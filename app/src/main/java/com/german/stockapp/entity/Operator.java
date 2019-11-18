@@ -8,20 +8,24 @@ public class Operator {
     private int workShiftId;
 
     private WorkShift workShift;
+    private WorkDays workDays;
+    private Authorization authorization;
+
+    public Operator(int id, String operatorName, int workDaysId, int workShiftId, WorkShift workShift, WorkDays workDays, Authorization authorization) {
+        this.id = id;
+        this.operatorName = operatorName;
+        this.workDaysId = workDaysId;
+        this.workShiftId = workShiftId;
+        this.workShift = workShift;
+        this.workDays = workDays;
+        this.authorization = authorization;
+    }
 
     public Operator(int id, String operatorName, int workDaysId, int workShiftId) {
         this.id = id;
         this.operatorName = operatorName;
         this.workDaysId = workDaysId;
         this.workShiftId = workShiftId;
-    }
-
-    public Operator(int id, String operatorName, int workDaysId, int workShiftId, WorkShift workShift) {
-        this.id = id;
-        this.operatorName = operatorName;
-        this.workDaysId = workDaysId;
-        this.workShiftId = workShiftId;
-        this.workShift = workShift;
     }
 
     public int getId() {

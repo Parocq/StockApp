@@ -20,6 +20,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 "operator_name TEXT," +
                 "work_days_id INTEGER," +
                 "work_shift_id INTEGER);", null);
+
+
     }
 
     @Override

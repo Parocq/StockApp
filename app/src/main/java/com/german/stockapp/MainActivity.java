@@ -19,6 +19,6 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();// создание базы данных
 
 
-        
+
     }
 }
