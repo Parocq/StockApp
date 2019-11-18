@@ -29,7 +29,7 @@ public class Product {
         this.implementationPeriod = implementationPeriod;
         this.locationId = locationId;
         this.weightCategoryId = weightCategoryId;
-        this.location = location;   
+        this.location = location;
         this.weightCategory = weightCategory;
         this.operator = operator;
     }
