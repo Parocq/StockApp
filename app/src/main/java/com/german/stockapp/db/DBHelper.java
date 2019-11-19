@@ -17,7 +17,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE work_shift(id INTEGER PRIMARY KEY, shift TEXT);");
+        db.execSQL("CREATE TABLE work_shift(id INTEGER PRIMARY KEY," +
+                "shift TEXT);");
 
 
         db.execSQL("CREATE TABLE work_days(id INTEGER PRIMARY KEY," +
@@ -39,13 +40,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "min_weight REAL," +
                 "max_weight REAL);");
 
-//
-        db.execSQL("CREATE TABLE authorization(id INTEGER PRIMARY KEY," +
-                "login TEXT," +
-                "pass TEXT," +
-                "roles_id INTEGER," +
-                "operator_id INTEGER);");
-
 
         db.execSQL("CREATE TABLE operator(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "operator_name TEXT," +
@@ -53,14 +47,21 @@ public class DBHelper extends SQLiteOpenHelper {
                 "work_shift_id INTEGER REFERENCES work_shift(id));");
 
 
+        db.execSQL("CREATE TABLE authorization(id INTEGER PRIMARY KEY," +
+                "login TEXT," +
+                "pass TEXT," +
+                "roles_id INTEGER REFERENCES roles(id)," +
+                "operator_id INTEGER REFERENCES operator(id));");
+
+
         db.execSQL("CREATE TABLE product(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT," +
                 "date_of_delivery TEXT," +
-                "operator_id INTEGER," +
+                "operator_id INTEGER REFERENCES operator(id)," +
                 "amount INTEGER," +
                 "implementation_period TEXT," +
-                "location_id INTEGER," +
-                "weight_category_id INTEGER);");
+                "location_id INTEGER REFERENCES location(id)," +
+                "weight_category_id INTEGER REFERENCES weight_category(id));");
     }
 
     @Override

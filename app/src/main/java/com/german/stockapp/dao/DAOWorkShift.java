@@ -1,8 +1,12 @@
 package com.german.stockapp.dao;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import com.german.stockapp.entity.WorkShift;
 
 public class DAOWorkShift {
+
+    SQLiteDatabase db;
 
     public void insert(WorkShift obj) {
 
