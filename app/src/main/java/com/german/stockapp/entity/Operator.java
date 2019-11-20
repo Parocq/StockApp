@@ -28,6 +28,12 @@ public class Operator {
         this.workShiftId = workShiftId;
     }
 
+    public  Operator(String operatorName, int workDaysId, int workShiftId) {
+        this.operatorName = operatorName;
+        this.workDaysId = workDaysId;
+        this.workShiftId = workShiftId;
+    }
+
     public int getId() {
         return id;
     }

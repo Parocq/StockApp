@@ -22,7 +22,7 @@ public class DAOOperator {
         contentValues.put("work_days_id", obj.getWorkDaysId());
         contentValues.put("work_shift_id", obj.getWorkShiftId());
 
-        db.insert("operator", null, contentValues);
+        db.insertOrThrow("operator", null, contentValues);// при ошибке - выкидывает из проги
     }
 
     public void update(Operator obj) {
