@@ -14,6 +14,13 @@ public class Location {
         this.shelf = shelf;
     }
 
+    public Location(int line, int rack, int shelf) {
+        this.line = line;
+        this.rack = rack;
+        this.shelf = shelf;
+    }
+
+
     public int getId() {
         return id;
     }

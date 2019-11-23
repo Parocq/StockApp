@@ -3,18 +3,18 @@ package com.german.stockapp.entity;
 public class Roles {
 
     private int id;
-    private String roleName;
+    private String role_name;
 
-    public Roles(int id, String roleName) {
+    public Roles(int id, String role_name) {
         this.id = id;
-        this.roleName = roleName;
+        this.role_name = role_name;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getRole_name() {
+        return role_name;
     }
 }

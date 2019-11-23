@@ -27,6 +27,19 @@ private Roles roles;
         this.operator_id = operator_id;
     }
 
+    public Authorization(String login, String pass, int roles_id, int operator_id) {
+        this.login = login;
+        this.pass = pass;
+        this.roles_id = roles_id;
+        this.operator_id = operator_id;
+    }
+
+    public Authorization(String login, String pass, int roles_id) {
+        this.login = login;
+        this.pass = pass;
+        this.roles_id = roles_id;
+    }
+
     public int getId() {
         return id;
     }

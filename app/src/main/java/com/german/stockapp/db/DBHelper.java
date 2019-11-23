@@ -8,11 +8,10 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static String NAME_DATABASE = "stock";
+    public static final String NAME_DATABASE = "stock";//константа имени базы данных
+    public static final int DATABASE_VERSION=1;//задаем версию бд(чтобы работал он апгрейд если будем воодить)
 
-    public DBHelper(@Nullable Context context) {
-        super(context, NAME_DATABASE, null, 1);
-    }
+    public DBHelper(@Nullable Context context) { super(context, NAME_DATABASE, null, DATABASE_VERSION);}
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -29,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "role_name TEXT);");
 
 
-        db.execSQL("CREATE TABLE location(id INTEGER PRIMARY KEY," +
+        db.execSQL("CREATE TABLE location(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "line INTEGER," +
                 "rack INTEGER," +
                 "shelf INTEGER);");
@@ -47,7 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "work_shift_id INTEGER REFERENCES work_shift(id));");
 
 
-        db.execSQL("CREATE TABLE authorization(id INTEGER PRIMARY KEY," +
+        db.execSQL("CREATE TABLE authorization(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "login TEXT," +
                 "pass TEXT," +
                 "roles_id INTEGER REFERENCES roles(id)," +
