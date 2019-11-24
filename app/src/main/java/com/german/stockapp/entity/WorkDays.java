@@ -14,7 +14,5 @@ public class WorkDays {
         return id;
     }
 
-    public String getDays() {
-        return days;
-    }
+    public String getDays() {  return days;  }
 }

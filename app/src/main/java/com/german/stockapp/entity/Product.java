@@ -8,10 +8,10 @@ public class Product {
 
     private int id;
     private String title;
-    private Time dateOfDelivery;  // как задавать дата+время занесения
+    private String date_of_delivery;  // как задавать дата+время занесения
     private int operator_id;
     private int amount;
-    private Date implementationPeriod; // Тут просто дату нужно задавать.
+    private String implementation_period; // Тут просто дату нужно задавать.
     private int locationId;
     private int weightCategoryId;
 
@@ -19,14 +19,14 @@ public class Product {
     private WeightCategory weightCategory;
     private Operator operator;
 
-    public Product(int id, String title, Time dateOfDelivery, int operator_id, int amount, Date implementationPeriod,
+    public Product(int id, String title, String date_of_delivery, int operator_id, int amount, String implementation_period,
                    int locationId, int weightCategoryId, Location location, WeightCategory weightCategory, Operator operator) {
         this.id = id;
         this.title = title;
-        this.dateOfDelivery = dateOfDelivery;
+        this.date_of_delivery = date_of_delivery;
         this.operator_id = operator_id;
         this.amount = amount;
-        this.implementationPeriod = implementationPeriod;
+        this.implementation_period = implementation_period;
         this.locationId = locationId;
         this.weightCategoryId = weightCategoryId;
         this.location = location;
@@ -42,8 +42,8 @@ public class Product {
         return title;
     }
 
-    public Time getDateOfDelivery() {
-        return dateOfDelivery;
+    public String getDate_of_delivery() {
+        return date_of_delivery;
     }
 
     public int getOperator_id() {
@@ -54,9 +54,7 @@ public class Product {
         return amount;
     }
 
-    public Date getImplementationPeriod() {
-        return implementationPeriod;
-    }
+    public String getImplementation_period() {return implementation_period; }
 
     public int getLocationId() {
         return locationId;
@@ -66,17 +64,26 @@ public class Product {
         return weightCategoryId;
     }
 
-    public Product(int id, String title, Time dateOfDelivery, int operator_id, int amount,
-                   Date implementationPeriod, int locationId, int weightCategoryId) {
+    public Product(int id, String title, String date_of_delivery, int operator_id, int amount,
+                   String implementation_period, int locationId, int weightCategoryId) {
         this.id = id;
         this.title = title;
-        this.dateOfDelivery = dateOfDelivery;
+        this.date_of_delivery = date_of_delivery;
         this.operator_id = operator_id;
         this.amount = amount;
-        this.implementationPeriod = implementationPeriod;
+        this.implementation_period = implementation_period;
         this.locationId = locationId;
         this.weightCategoryId = weightCategoryId;
+    }
 
-
+    public Product(String title, String date_of_delivery, int operator_id, int amount,
+                   String implementation_period, int locationId, int weightCategoryId) {
+        this.title = title;
+        this.date_of_delivery = date_of_delivery;
+        this.operator_id = operator_id;
+        this.amount = amount;
+        this.implementation_period = implementation_period;
+        this.locationId = locationId;
+        this.weightCategoryId = weightCategoryId;
     }
 }

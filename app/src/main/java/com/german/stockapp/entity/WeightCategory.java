@@ -4,14 +4,14 @@ public class WeightCategory {
 
     private int id;
     private String title;
-    private double maxWeight;
-    private double minWeight;
+    private double max_weight;
+    private double min_weight;
 
-    public WeightCategory(int id, String title, double maxWeight, double minWeight) {
+    public WeightCategory(int id, String title, double max_weight, double min_weight) {
         this.id = id;
         this.title = title;
-        this.maxWeight = maxWeight;
-        this.minWeight = minWeight;
+        this.max_weight = max_weight;
+        this.min_weight = min_weight;
     }
 
     public int getId() {
@@ -22,11 +22,11 @@ public class WeightCategory {
         return title;
     }
 
-    public double getMaxWeight() {
-        return maxWeight;
+    public double getMax_weight() {
+        return max_weight;
     }
 
-    public double getMinWeight() {
-        return minWeight;
+    public double getMin_weight() {
+        return min_weight;
     }
 }
