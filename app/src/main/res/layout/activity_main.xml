@@ -11,7 +11,7 @@
         android:layout_width="217dp"
         android:layout_height="106dp"
         android:layout_marginStart="98dp"
-        android:layout_marginTop="524dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="98dp"
         android:layout_marginBottom="101dp"
         android:onClick="onClick"
@@ -20,7 +20,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextLogin"
@@ -73,5 +74,19 @@
         app:layout_constraintEnd_toStartOf="@+id/editTextPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
+
+    <TextView
+        android:id="@+id/textEnterCheck"
+        android:layout_width="112dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="176dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
