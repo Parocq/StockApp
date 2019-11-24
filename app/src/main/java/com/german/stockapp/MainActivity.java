@@ -49,16 +49,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Work_shift data
         DAOWorkShift daoWorkShift = new DAOWorkShift(db);
-        daoWorkShift.insert(new WorkShift(1, "Первая"));
-        daoWorkShift.insert(new WorkShift(2, "Вторая"));
+        daoWorkShift.insert(new WorkShift( "Первая"));
+        daoWorkShift.insert(new WorkShift( "Вторая"));
 
 
         //Work_days data
         DAOWorkDays daoWorkDays = new DAOWorkDays(db);
-        daoWorkDays.insert(new WorkDays(1, "Понедельник, среда, пятница"));
-        daoWorkDays.insert(new WorkDays(2, "Вторник, четверг, суббота"));
-        daoWorkDays.insert(new WorkDays(3, "Среда, воскресенье"));
-        daoWorkDays.insert(new WorkDays(4, "Понедельник, четверг"));
+        daoWorkDays.insert(new WorkDays( "Понедельник, среда, пятница"));
+        daoWorkDays.insert(new WorkDays( "Вторник, четверг, суббота"));
+        daoWorkDays.insert(new WorkDays( "Среда, воскресенье"));
+        daoWorkDays.insert(new WorkDays("Понедельник, четверг"));
 
 
         // Roles data
@@ -92,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Weight_category DATA
         DAOWeightCategory daoWeightCategory = new DAOWeightCategory(db);
-        daoWeightCategory.insert(new WeightCategory(1, "Лёгкий", 0,300));
-        daoWeightCategory.insert(new WeightCategory(2, "Средний", 301,1000));
-        daoWeightCategory.insert(new WeightCategory(3, "Тяжёлый", 1001,10000));
+        daoWeightCategory.insert(new WeightCategory( "Лёгкий", 0,300));
+        daoWeightCategory.insert(new WeightCategory( "Средний", 301,1000));
+        daoWeightCategory.insert(new WeightCategory( "Тяжёлый", 1001,10000));
 
 
         // Authorization data

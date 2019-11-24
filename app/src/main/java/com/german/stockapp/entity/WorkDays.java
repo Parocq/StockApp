@@ -10,6 +10,10 @@ public class WorkDays {
         this.days = days;
     }
 
+    public WorkDays(String days) {
+        this.days = days;
+    }
+
     public int getId() {
         return id;
     }

@@ -9,6 +9,10 @@ public class WorkShift {
         this.shift = shift;
     }
 
+    public WorkShift(String shift) {
+        this.shift = shift;
+    }
+
     public int getId() {
         return id;
     }

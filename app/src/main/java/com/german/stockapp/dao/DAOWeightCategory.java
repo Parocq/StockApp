@@ -16,7 +16,7 @@ public class DAOWeightCategory {
 
         public void insert(WeightCategory obj) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put("id", obj.getId());
+        //    contentValues.put("id", obj.getId());
             contentValues.put("title", obj.getTitle());
             contentValues.put("min_weight", obj.getMin_weight());
             contentValues.put("max_weight", obj.getMax_weight());

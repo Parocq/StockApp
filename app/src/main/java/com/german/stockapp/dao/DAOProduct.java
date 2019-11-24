@@ -15,13 +15,13 @@ public class DAOProduct {
         public void insert(Product obj) {
 
                 ContentValues contentValues = new ContentValues();
-                contentValues.put("operator_name", obj.getTitle());
+                contentValues.put("title", obj.getTitle());
                 contentValues.put("date_of_delivery", obj.getDate_of_delivery());// Гугли про дату и время SQLite
-                contentValues.put("work_shift_id", obj.getOperator_id());
-                contentValues.put("work_shift_id", obj.getAmount());
-                contentValues.put("work_shift_id", obj.getImplementation_period());
-                contentValues.put("work_shift_id", obj.getLocationId());
-                contentValues.put("work_shift_id", obj.getWeightCategoryId());
+                contentValues.put("operator_id", obj.getOperator_id());
+                contentValues.put("amount", obj.getAmount());
+                contentValues.put("implementation_period", obj.getImplementation_period());
+                contentValues.put("location_id", obj.getLocationId());
+                contentValues.put("weight_category_id", obj.getWeightCategoryId());
 
                 db.insertOrThrow("product", null, contentValues);
 

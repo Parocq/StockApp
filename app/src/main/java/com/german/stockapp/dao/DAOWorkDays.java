@@ -13,7 +13,7 @@ public class DAOWorkDays {
 
     public void insert(WorkDays obj) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id", obj.getId());
+     //   contentValues.put("id", obj.getId());
         contentValues.put("days", obj.getDays());
 
         db.insertOrThrow("work_days", null, contentValues);// при ошибке - выкидывает из проги

@@ -13,7 +13,7 @@ public class DAORoles {
 
     public void insert(Roles obj) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id", obj.getId());
+        //contentValues.put("id", obj.getId());
         contentValues.put("role_name", obj.getRole_name());
 
         db.insertOrThrow("roles", null, contentValues);

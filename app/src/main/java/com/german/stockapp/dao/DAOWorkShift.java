@@ -13,7 +13,7 @@ public class DAOWorkShift {
 
     public void insert(WorkShift obj) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id", obj.getId());
+      //  contentValues.put("id", obj.getId());
         contentValues.put("shift", obj.getShift());
 
         db.insertOrThrow("work_shift", null, contentValues);

@@ -25,15 +25,15 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE work_shift(id INTEGER PRIMARY KEY," +
+        db.execSQL("CREATE TABLE work_shift(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "shift TEXT);");
 
 
-        db.execSQL("CREATE TABLE work_days(id INTEGER PRIMARY KEY," +
+        db.execSQL("CREATE TABLE work_days(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "days TEXT);");
 
 
-        db.execSQL("CREATE TABLE roles(id INTEGER PRIMARY KEY," +
+        db.execSQL("CREATE TABLE roles(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "role_name TEXT);");
 
 
@@ -43,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "shelf INTEGER);");
 
 
-        db.execSQL("CREATE TABLE weight_category (id INTEGER PRIMARY KEY," +
+        db.execSQL("CREATE TABLE weight_category (id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT," +
                 "min_weight REAL," +
                 "max_weight REAL);");

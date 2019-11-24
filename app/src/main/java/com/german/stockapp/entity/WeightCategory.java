@@ -14,6 +14,13 @@ public class WeightCategory {
         this.min_weight = min_weight;
     }
 
+    public WeightCategory(String title, double max_weight, double min_weight) {
+        this.title = title;
+        this.max_weight = max_weight;
+        this.min_weight = min_weight;
+    }
+
+
     public int getId() {
         return id;
     }
