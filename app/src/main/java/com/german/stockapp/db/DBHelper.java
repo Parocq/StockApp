@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         db.execSQL("CREATE TABLE roles(id INTEGER PRIMARY KEY," +
-                "role_name TEXT);");
+                    "role_name TEXT);");
 
 
         db.execSQL("CREATE TABLE location(id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -74,6 +74,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+       // db.execSQL("drop table if exists " + );
     }
 }
