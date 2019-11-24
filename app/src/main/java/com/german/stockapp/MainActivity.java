@@ -2,8 +2,11 @@ package com.german.stockapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -25,6 +28,8 @@ import com.german.stockapp.entity.WeightCategory;
 import com.german.stockapp.entity.WorkDays;
 import com.german.stockapp.entity.WorkShift;
 
+import javax.security.auth.login.LoginException;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText editTextLogin, editText1Password;// обозначаем что у нас будут использоваться поля ввода
@@ -41,18 +46,19 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);   //
         db = dbHelper.getWritableDatabase();// вернет экземпляр БД доступный для чтения и редактирования
 
-        // Authorization data
-        DAOAuthorization daoAuthorization = new DAOAuthorization(db);
-        daoAuthorization.insert(new Authorization("operatorMisha@sklad.by", "qwerty1", 3, 1));
-        daoAuthorization.insert(new Authorization("SuperGruschik@sklad.by", "qwerty2", 3, 2));
-        daoAuthorization.insert(new Authorization("IloveSlonov@sklad.by", "qwerty3", 3, 3));
-        daoAuthorization.insert(new Authorization("VladIs12@sklad.by", "qwerty4", 3, 4));
-        daoAuthorization.insert(new Authorization("ImOkay002@sklad.by", "qwerty5", 3, 5));
-        daoAuthorization.insert(new Authorization("iKILLyouDONT@sklad.by", "qwerty6", 3, 6));
 
-        daoAuthorization.insert(new Authorization("ManManager1995@sklad.by", "HardPass211", 1));//поменял местами ID роли
-        daoAuthorization.insert(new Authorization("SomeBodyOnesToldME@sklad.by", "HereWeH0V", 2));//относительно MySQL, не забудь
-        daoAuthorization.insert(new Authorization("ReachBOYZ@skald.by", "TryToHack007", 2));//заменить записку
+        // Work_shift data
+        DAOWorkShift daoWorkShift = new DAOWorkShift(db);
+        daoWorkShift.insert(new WorkShift(1, "Первая"));
+        daoWorkShift.insert(new WorkShift(2, "Вторая"));
+
+
+        //Work_days data
+        DAOWorkDays daoWorkDays = new DAOWorkDays(db);
+        daoWorkDays.insert(new WorkDays(1, "Понедельник, среда, пятница"));
+        daoWorkDays.insert(new WorkDays(2, "Вторник, четверг, суббота"));
+        daoWorkDays.insert(new WorkDays(3, "Среда, воскресенье"));
+        daoWorkDays.insert(new WorkDays(4, "Понедельник, четверг"));
 
 
         // Roles data
@@ -84,6 +90,27 @@ public class MainActivity extends AppCompatActivity {
         daoLocation.insert(new Location(2,3,3));
 
 
+        // Weight_category DATA
+        DAOWeightCategory daoWeightCategory = new DAOWeightCategory(db);
+        daoWeightCategory.insert(new WeightCategory(1, "Лёгкий", 0,300));
+        daoWeightCategory.insert(new WeightCategory(2, "Средний", 301,1000));
+        daoWeightCategory.insert(new WeightCategory(3, "Тяжёлый", 1001,10000));
+
+
+        // Authorization data
+        DAOAuthorization daoAuthorization = new DAOAuthorization(db);
+        daoAuthorization.insert(new Authorization("operatorMisha@sklad.by", "qwerty1", 3, 1));
+        daoAuthorization.insert(new Authorization("SuperGruschik@sklad.by", "qwerty2", 3, 2));
+        daoAuthorization.insert(new Authorization("IloveSlonov@sklad.by", "qwerty3", 3, 3));
+        daoAuthorization.insert(new Authorization("VladIs12@sklad.by", "qwerty4", 3, 4));
+        daoAuthorization.insert(new Authorization("ImOkay002@sklad.by", "qwerty5", 3, 5));
+        daoAuthorization.insert(new Authorization("iKILLyouDONT@sklad.by", "qwerty6", 3, 6));
+
+        daoAuthorization.insert(new Authorization("ManManager1995@sklad.by", "HardPass211", 1));//поменял местами ID роли
+        daoAuthorization.insert(new Authorization("SomeBodyOnesToldME@sklad.by", "HereWeH0V", 2));//относительно MySQL, не забудь
+        daoAuthorization.insert(new Authorization("ReachBOYZ@skald.by", "TryToHack007", 2));//заменить записку
+
+
         // Operators data
         DAOOperator daoOperator = new DAOOperator(db);
         daoOperator.insert(new Operator("Misha Shimanovich", 1, 1));
@@ -106,37 +133,46 @@ public class MainActivity extends AppCompatActivity {
         daoProduct.insert(new Product("Тарелки", "2019-10-11 9:34:09", 4, 100, "2020-07-11", 8,2));
         daoProduct.insert(new Product("Кастрюли", "2018-07-01 9:34:09", 5, 80, "2020-08-26", 9,2));
         daoProduct.insert(new Product("Губки", "2018-05-01 9:34:09", 2, 300, "2022-11-07", 10,1));
-
-
-        // Weight_category DATA
-        DAOWeightCategory daoWeightCategory = new DAOWeightCategory(db);
-        daoWeightCategory.insert(new WeightCategory(1, "Лёгкий", 0,300));
-        daoWeightCategory.insert(new WeightCategory(2, "Средний", 301,1000));
-        daoWeightCategory.insert(new WeightCategory(3, "Тяжёлый", 1001,10000));
-
-
-        // Work_shift data
-        DAOWorkShift daoWorkShift = new DAOWorkShift(db);
-        daoWorkShift.insert(new WorkShift(1, "Первая"));
-        daoWorkShift.insert(new WorkShift(2, "Вторая"));
-
-        //Work_days data
-        DAOWorkDays daoWorkDays = new DAOWorkDays(db);
-        daoWorkDays.insert(new WorkDays(1, "Понедельник, среда, пятница"));
-        daoWorkDays.insert(new WorkDays(2, "Вторник, четверг, суббота"));
-        daoWorkDays.insert(new WorkDays(3, "Среда, воскресенье"));
-        daoWorkDays.insert(new WorkDays(3, "Понедельник, четверг"));
     }
 
 
 
-    public void onClick(View view) {// Заполнение при нажатии
-        String textLogin = editTextLogin.getText().toString();
-        String textPassword = editTextLogin.getText().toString();
-        //String text2 = Integer.parseInt(editTextLogin.getText().toString());// parse - перевод в INT
-        //int text3 = Integer.parseInt(editText.getText().toString());
+    public void onClick(View view) {
+        String textLogin = editTextLogin.getText().toString();// В переменные записывваем значения из TextEdit
+        String textPassword = editTextLogin.getText().toString();//
 
-        DAOAuthorization daoAuthorization = new DAOAuthorization(db);
-       // DAOAuthorization.insert(new Operator(text1, text2, text3));
+        DBHelper dbHelper = new DBHelper(this);// копируем экземпляр для чтения и редактирования
+        db = dbHelper.getWritableDatabase();//
+
+
+
+        Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null   ,null,null,null,null,null );
+        if (cursor.moveToFirst()) { // длает первую запись курсор активной и проверяет, если ли вообще записи
+            int idINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_ID);//получаем порядковые номера столбцов с помощью курсора КоламнИндекс
+            int loginINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN);
+            int passINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS);
+                do {
+                    if ( textLogin == cursor.getString(loginINDEX) && textPassword == cursor.getString(passINDEX)) {
+                        Intent intent = new Intent(this, AccessLevel.class);
+                        startActivity(intent);
+                    }
+                    /*Log.d("mLog","ID"+cursor.getInt(idINDEX)+
+                           ", login = " + cursor.getString(loginINDEX) +
+                            ", pass" + cursor.getString(passINDEX));*/
+                } while (cursor.moveToNext()); // перебираем все, пока не доберемся до последней
+            } else
+                Log.d("mLog", "0 rows");
+        cursor.close();
+
+
+
+
+//        String textLogin = editTextLogin.getText().toString();
+//        String textPassword = editTextLogin.getText().toString();
+//        //String text2 = Integer.parseInt(editTextLogin.getText().toString());// parse - перевод в INT
+//        //int text3 = Integer.parseInt(editText.getText().toString());
+//
+//        DAOAuthorization daoAuthorization = new DAOAuthorization(db);
+//       // DAOAuthorization.insert(new Operator(text1, text2, text3));
     }
 }

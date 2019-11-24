@@ -13,7 +13,6 @@ public class DAOLocation {
 
         public void insert(Location obj) {
                 ContentValues contentValues = new ContentValues();
-                contentValues.put("id", obj.getId());
                 contentValues.put("line", obj.getLine());
                 contentValues.put("rack", obj.getRack());
                 contentValues.put("shelf", obj.getShelf());

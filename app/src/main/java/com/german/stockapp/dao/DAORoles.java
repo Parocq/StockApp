@@ -16,7 +16,7 @@ public class DAORoles {
         contentValues.put("id", obj.getId());
         contentValues.put("role_name", obj.getRole_name());
 
-        db.insertOrThrow("Authorization", null, contentValues);
+        db.insertOrThrow("roles", null, contentValues);
     }
 
     public void update(Roles obj) {

@@ -18,7 +18,7 @@ public class DAOAuthorization {
                 contentValues.put("roles_id", obj.getRoles_id());
                 contentValues.put("operator_id", obj.getOperator_id());
 
-                db.insertOrThrow("Authorization", null, contentValues);// при ошибке - выкидывает из проги
+                db.insertOrThrow("authorization", null, contentValues);// при ошибке - выкидывает из проги
         }
 
         public void update(Authorization obj) {

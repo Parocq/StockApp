@@ -23,7 +23,7 @@ public class DAOProduct {
                 contentValues.put("work_shift_id", obj.getLocationId());
                 contentValues.put("work_shift_id", obj.getWeightCategoryId());
 
-                db.insertOrThrow("operator", null, contentValues);
+                db.insertOrThrow("product", null, contentValues);
 
         }
 
