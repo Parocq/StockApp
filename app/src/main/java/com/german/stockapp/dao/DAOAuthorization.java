@@ -1,9 +1,13 @@
 package com.german.stockapp.dao;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Authorization;
+
+import java.util.ArrayList;
 
 public class DAOAuthorization {
 
@@ -28,24 +32,23 @@ public class DAOAuthorization {
         public void delete(Authorization obj) {
 
         }
-public ArrayList<Authorization> selectAll(){
-ArrayList<Authorization> list = new ArrayList<>();
-  Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null   ,null,null,null,null,null );
-Authorization at;
-if (cursor.moveToFirst()) {
-do{
-int id = cursor.getInt(0);
-String login = cursor.getString(1);
-String pass = curs
-int role_id =
-int op_id =
-at = new Authorization (id, login, pass, role_id, op_id);
-list.add(at);
+        public ArrayList<Authorization> selectAll(){
+                ArrayList<Authorization> list = new ArrayList<>();
+                Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null   ,null,null,null,null,null );
+                Authorization at;
+                if (cursor.moveToFirst()) {
+                do{
+                        int id = cursor.getInt(0);
+                        String login = cursor.getString(1);
+                        String pass = cursor.getString(2);
+                        int role_id = cursor.getInt(3);
+                        int operator_id = cursor.getInt(4);
+                        at = new Authorization (id, login, pass, role_id, operator_id);
+                        list.add(at);
+                } while (cursor.moveToNext());
+                cursor.close();
+                }
+                return list;
+                }
 
-} while (cursor.moveToNext);
-Curso
- }
-return list;
-}
-
-    }
+        }

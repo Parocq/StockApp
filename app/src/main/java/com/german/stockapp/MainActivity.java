@@ -11,23 +11,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.german.stockapp.dao.DAOAuthorization;
-import com.german.stockapp.dao.DAOLocation;
-import com.german.stockapp.dao.DAOOperator;
-import com.german.stockapp.dao.DAOProduct;
-import com.german.stockapp.dao.DAORoles;
-import com.german.stockapp.dao.DAOWeightCategory;
-import com.german.stockapp.dao.DAOWorkDays;
-import com.german.stockapp.dao.DAOWorkShift;
+
 import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Authorization;
-import com.german.stockapp.entity.Location;
-import com.german.stockapp.entity.Operator;
-import com.german.stockapp.entity.Product;
-import com.german.stockapp.entity.Roles;
-import com.german.stockapp.entity.WeightCategory;
-import com.german.stockapp.entity.WorkDays;
-import com.german.stockapp.entity.WorkShift;
+import com.german.stockapp.dao.DAOAuthorization;
+
+
+import java.util.ArrayList;
 
 import javax.security.auth.login.LoginException;
 
@@ -64,17 +54,26 @@ public class MainActivity extends AppCompatActivity {
             int idINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_ID);//получаем порядковые номера столбцов с помощью курсора КоламнИндекс
             int loginINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN);
             int passINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS);
-                do {
-                    if (textLogin == cursor.getString(cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN))
-                            && textPassword == cursor.getString(cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS))) {
-                        Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
-                        startActivity(intent);//
-                    } else finish();
 
-                } while (cursor.moveToNext()); // перебираем все, пока не доберемся до последней
-            } else
-                Log.d("mLog", "0 rows");
-        cursor.close();
+            Authorization authorization = new Authorization();
+            ArrayList<Authorization> list = authorization.selectAll();
+
+            for(int i = 0; i < list.size(); i++){
+                if(list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals(textPassword)){
+                    Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
+                    startActivity(intent);
+                } else finish();
+            }
+//                do {
+//
+//                    if (textLogin == cursor.getString(cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN))
+//                            && textPassword == cursor.getString(cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS))) {
+//                        Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
+//                        startActivity(intent);//
+//                    } else finish();
+//
+//                } while (cursor.moveToNext()); // перебираем все, пока не доберемся до последней
+            } else  cursor.close();
 
 
 
@@ -89,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-for(int i = 0; i < list.size; i++){
-if(list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals){
-}
-}
+
     }
 }
