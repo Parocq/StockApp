@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
 //        DAOAuthorization daoAuthorization = new DAOAuthorization(db);
 //       // DAOAuthorization.insert(new Operator(text1, text2, text3));
 
-
+Authorization authorization;
+        ArrayList<Authorization> list = authorization.selectAll();
 
 for(int i = 0; i < list.size; i++){
 if(list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals){
