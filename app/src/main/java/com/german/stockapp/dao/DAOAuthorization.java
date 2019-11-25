@@ -13,6 +13,9 @@ public class DAOAuthorization {
 
         SQLiteDatabase db;
 
+        public DAOAuthorization() {
+        }
+
         public DAOAuthorization (SQLiteDatabase db) {this.db = db;}
 
         public void insert(Authorization obj) {
@@ -34,7 +37,7 @@ public class DAOAuthorization {
         }
         public ArrayList<Authorization> selectAll(){
                 ArrayList<Authorization> list = new ArrayList<>();
-                Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null   ,null,null,null,null,null );
+                Cursor  cursor = db.rawQuery("select * from authorization" ,null);
                 Authorization at;
                 if (cursor.moveToFirst()) {
                 do{

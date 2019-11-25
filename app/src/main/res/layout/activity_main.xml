@@ -6,23 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="217dp"
-        android:layout_height="106dp"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="98dp"
-        android:layout_marginBottom="101dp"
-        android:onClick="onClick"
-        android:text="Авторизоваться"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <EditText
         android:id="@+id/editTextLogin"
         android:layout_width="wrap_content"
@@ -34,10 +17,11 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editText1Password"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="176dp"
@@ -56,7 +40,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="208dp"
         android:layout_marginEnd="30dp"
-        android:text="Логин"
+        android:text="@string/login"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toStartOf="@+id/editTextLogin"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,24 +53,25 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="30dp"
-        android:text="Пароль"
+        android:text="@string/pass"
         app:autoSizeTextType="uniform"
-        app:layout_constraintEnd_toStartOf="@+id/editTextPassword"
+        app:layout_constraintEnd_toStartOf="@+id/editText1Password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
 
-    <TextView
-        android:id="@+id/textEnterCheck"
-        android:layout_width="112dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="176dp"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+        android:layout_marginTop="187dp"
+        android:layout_marginEnd="166dp"
+        android:text="@string/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editText1Password"
+        android:onClick="onAuthorizationClick"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

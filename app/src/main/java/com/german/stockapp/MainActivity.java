@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 
 import com.german.stockapp.db.DBHelper;
@@ -18,8 +16,6 @@ import com.german.stockapp.dao.DAOAuthorization;
 
 
 import java.util.ArrayList;
-
-import javax.security.auth.login.LoginException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,17 +28,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         editTextLogin = findViewById(R.id.editTextLogin);//писваиваем переменным соответсвующие поля ввода
-        editText1Password = findViewById(R.id.editTextPassword);//
+        editText1Password = findViewById(R.id.editText1Password);//
 
         DBHelper dbHelper = new DBHelper(this);   //
         db = dbHelper.getWritableDatabase();// вернет экземпляр БД доступный для чтения и редактирования
     }
 
 
-
-    public void onClick(View view) {
+    public void onAuthorizationClick(View view){
         String textLogin = editTextLogin.getText().toString();// В переменные записывваем значения из TextEdit
-        String textPassword = editTextLogin.getText().toString();//
+        String textPassword = editText1Password.getText().toString();//
 
         DBHelper dbHelper = new DBHelper(this);// копируем экземпляр для чтения и редактирования
         db = dbHelper.getWritableDatabase();//
@@ -55,14 +50,14 @@ public class MainActivity extends AppCompatActivity {
             int loginINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN);
             int passINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS);
 
-            Authorization authorization = new Authorization();
+            DAOAuthorization authorization = new DAOAuthorization(db);
             ArrayList<Authorization> list = authorization.selectAll();
 
             for(int i = 0; i < list.size(); i++){
                 if(list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals(textPassword)){
                     Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
                     startActivity(intent);
-                } else finish();
+                }
             }
 //                do {
 //

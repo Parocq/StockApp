@@ -3,6 +3,7 @@ package com.german.stockapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 public class AccessLevel extends AppCompatActivity {
 
@@ -11,4 +12,6 @@ public class AccessLevel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_access_level);
     }
+
+
 }
