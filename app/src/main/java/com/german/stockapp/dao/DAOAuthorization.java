@@ -28,6 +28,24 @@ public class DAOAuthorization {
         public void delete(Authorization obj) {
 
         }
+public ArrayList<Authorization> selectAll(){
+ArrayList<Authorization> list = new ArrayList<>();
+  Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null   ,null,null,null,null,null );
+Authorization at;
+if (cursor.moveToFirst()) {
+do{
+int id = cursor.getInt(0);
+String login = cursor.getString(1);
+String pass = curs
+int role_id =
+int op_id =
+at = new Authorization (id, login, pass, role_id, op_id);
+list.add(at);
 
+} while (cursor.moveToNext);
+Curso
+ }
+return list;
+}
 
     }
