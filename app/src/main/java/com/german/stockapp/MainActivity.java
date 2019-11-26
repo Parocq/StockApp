@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 import com.german.stockapp.db.DBHelper;
@@ -16,6 +17,7 @@ import com.german.stockapp.dao.DAOAuthorization;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
             DAOAuthorization authorization = new DAOAuthorization(db);
             ArrayList<Authorization> list = authorization.selectAll();
 
+            TextView textIncorrect = new TextView(this);
+            textIncorrect = (TextView)findViewById(R.id.textIncorrect);
+
             for(int i = 0; i < list.size(); i++){
                 if(list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals(textPassword)){
                     Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
                     startActivity(intent);
-                }
+                } else  {textIncorrect.setText("Login or password are incorrect");}
             }
 //                do {
 //
