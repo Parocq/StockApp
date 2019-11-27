@@ -3,4 +3,8 @@
     <string name="button">Button</string>
     <string name="login">Логин</string>
     <string name="pass">Пароль</string>
+    <string name="AccessLevel">Уровень доступа:</string>
+    <string name="WorkWithProduction">Работа с продукцией</string>
+    <string name="WWOperators">Работа с операторами</string>
+    <string name="Unlog">Разлогиниться</string>
 </resources>

@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         if (cursor.moveToFirst()) { // длает первую запись курсор активной и проверяет, если ли вообще записи
             int idINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_ID);//получаем порядковые номера столбцов с помощью курсора КоламнИндекс
             int loginINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN);
-            int passINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS);
+            //int passINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS);
 
             DAOAuthorization authorization = new DAOAuthorization(db);
             ArrayList<Authorization> list = authorization.selectAll();

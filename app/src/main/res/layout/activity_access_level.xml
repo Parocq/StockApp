@@ -6,4 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".AccessLevel">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="200dp"
+        android:text="@string/AccessLevel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBottom_toBottomOf="@id/buttonToProducts"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="149dp"
+        android:layout_marginBottom="200dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBottom_toBottomOf="@id/buttonToProducts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonToOperators"
+        android:layout_width="253dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="61dp"
+        android:text="@string/WWOperators"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToProducts" />
+
+    <Button
+        android:id="@+id/buttonToProducts"
+        android:layout_width="252dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="61dp"
+        android:text="@string/WorkWithProduction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonUnlog"
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="107dp"
+        android:text="@string/Unlog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonToOperators"
+        android:onClick="onUnClick"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
