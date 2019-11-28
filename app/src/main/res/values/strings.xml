@@ -7,4 +7,7 @@
     <string name="WorkWithProduction">Работа с продукцией</string>
     <string name="WWOperators">Работа с операторами</string>
     <string name="Unlog">Разлогиниться</string>
+    <string name="SearchProduct">Напишите название товара...</string>
+    <string name="Clear">Очистить</string>
+    <string name="Search">Поиск</string>
 </resources>

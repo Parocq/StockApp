@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onAuthorizationClick(View view){
+    public void onAuthorizationClick(View view) {
         String textLogin = editTextLogin.getText().toString();// В переменные записывваем значения из TextEdit
         String textPassword = editText1Password.getText().toString();//
 
@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();//
 
 
-
-        Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null   ,null,null,null,null,null );
+        Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null, null, null, null, null, null);
         if (cursor.moveToFirst()) { // длает первую запись курсор активной и проверяет, если ли вообще записи
             int idINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_ID);//получаем порядковые номера столбцов с помощью курсора КоламнИндекс
             int loginINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN);
@@ -56,13 +55,15 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Authorization> list = authorization.selectAll();
 
             TextView textIncorrect = new TextView(this);
-            textIncorrect = (TextView)findViewById(R.id.textIncorrect);
+            textIncorrect = (TextView) findViewById(R.id.textIncorrect);
 
-            for(int i = 0; i < list.size(); i++){
-                if(list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals(textPassword)){
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals(textPassword)) {
                     Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
                     startActivity(intent);
-                } else  {textIncorrect.setText("Login or password are incorrect");}
+                } else {
+                    textIncorrect.setText("Login or password are incorrect");
+                }
             }
 //                do {
 //
@@ -73,9 +74,10 @@ public class MainActivity extends AppCompatActivity {
 //                    } else finish();
 //
 //                } while (cursor.moveToNext()); // перебираем все, пока не доберемся до последней
-            } else  cursor.close();
+        } else cursor.close();
 
-
+    }
+}
 
 
 //        String textLogin = editTextLogin.getText().toString();
@@ -86,9 +88,5 @@ public class MainActivity extends AppCompatActivity {
 //        DAOAuthorization daoAuthorization = new DAOAuthorization(db);
 //       // DAOAuthorization.insert(new Operator(text1, text2, text3));
 
-Authorization authorization;
-        ArrayList<Authorization> list = authorization.selectAll();
 
 
-    }
-}

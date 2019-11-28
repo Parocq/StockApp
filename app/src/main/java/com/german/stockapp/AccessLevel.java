@@ -19,4 +19,8 @@ public class AccessLevel extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onProductsCatagol(View view) {
+        Intent intent = new Intent(this, ProductsCatagol.class);// Переход на другую активность
+        startActivity(intent);
+    }
 }
