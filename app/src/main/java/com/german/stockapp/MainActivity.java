@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null, null, null, null, null, null);
         if (cursor.moveToFirst()) { // длает первую запись курсор активной и проверяет, если ли вообще записи
-            int idINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_ID);//получаем порядковые номера столбцов с помощью курсора КоламнИндекс
-            int loginINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN);
+            //int idINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_ID);//получаем порядковые номера столбцов с помощью курсора КоламнИндекс
+            //int loginINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN);
             //int passINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS);
 
             DAOAuthorization authorization = new DAOAuthorization(db);

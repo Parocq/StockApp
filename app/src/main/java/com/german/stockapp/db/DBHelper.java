@@ -28,6 +28,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String NAME_DATABASE = "stock";//константа имени базы данных
     public static final int DATABASE_VERSION=1;//задаем версию бд(чтобы работал он апгрейд если будем воодить)
     public static final  String TABLE_AUTHORIZATION = "authorization";// Константа имени таблицы?
+    public static final String TABLE_PRODUCTS = "product";
+
+    public static final String PRODUCTS_TITLE = "title";
 
     public static final String AUTHORIZATION_ID = "id";
     public static final String AUTHORIZATION_LOGIN = "login";

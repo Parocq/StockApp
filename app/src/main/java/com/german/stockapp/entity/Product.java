@@ -86,4 +86,8 @@ public class Product {
         this.locationId = locationId;
         this.weightCategoryId = weightCategoryId;
     }
+
+    public Product( String title) {
+        this.title = title;
+    }
 }
