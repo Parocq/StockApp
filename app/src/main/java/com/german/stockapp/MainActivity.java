@@ -17,12 +17,11 @@ import com.german.stockapp.dao.DAOAuthorization;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText editTextLogin, editText1Password;// обозначаем что у нас будут использоваться поля ввода
-    SQLiteDatabase db;
+    static SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null, null, null, null, null, null);
         if (cursor.moveToFirst()) { // длает первую запись курсор активной и проверяет, если ли вообще записи
-            //int idINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_ID);//получаем порядковые номера столбцов с помощью курсора КоламнИндекс
-            //int loginINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN);
-            //int passINDEX = cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS);
 
             DAOAuthorization authorization = new DAOAuthorization(db);
             ArrayList<Authorization> list = authorization.selectAll();

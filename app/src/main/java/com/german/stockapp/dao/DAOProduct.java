@@ -38,14 +38,14 @@ public class DAOProduct {
 
         }
 
-        public ArrayList<Product> selectTitle(){
+        public ArrayList<Product> selectAll(){
                 ArrayList<Product> list = new ArrayList<>();
-                Cursor cursor = db.rawQuery("select id, title from product" ,null);
+                Cursor cursor = db.rawQuery("select _id, title from product" ,null);
                 Product pr;
                 if (cursor.moveToFirst()) {
                         do{
-                                //int id = cursor.getInt(0);
-                                String title = cursor.getString(0);
+//                                int id = cursor.getInt(0);
+                                String title = cursor.getString(1);
 
                                 pr = new Product (title);
                                 list.add(pr);

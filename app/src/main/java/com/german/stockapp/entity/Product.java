@@ -90,4 +90,12 @@ public class Product {
     public Product( String title) {
         this.title = title;
     }
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }

@@ -2,10 +2,13 @@ package com.german.stockapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProductsCatagol extends AppCompatActivity {
+public class ProductsCatagol extends AppCompatActivity implements ListView.OnItemClickListener {
 
     SQLiteDatabase db;
 
@@ -31,28 +34,36 @@ public class ProductsCatagol extends AppCompatActivity {
 
 
 
-//        Cursor cursor = db.query(DBHelper.TABLE_PRODUCTS, null, null, null, null, null, null);
-//        if (cursor.moveToFirst()) { // дeлает первую запись курсор активной и проверяет, если ли вообще записи
-//
-//            DAOProduct product = new DAOProduct(db);
-//
-//            List<Product> list = product.selectTitle();
-//            List<String> productsTitles = new ArrayList<>();
-//
-//
-//            for(Product pr: list){
-//                productsTitles.add(pr.getTitle());
+        db = MainActivity.db;
+            DAOProduct product = new DAOProduct(db);
+
+            List<Product> list = product.selectAll();
+
+
+
+//            for (int i = 0; i < list.size(); i++) {
+//                Log.d("LOGGG", list.get(i).toString());
 //            }
-//
-////            String [] productsTitles = {};
-//
-//            ListView listView = (ListView) findViewById(R.id.ListViewEl);
-//            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, productsTitles);
-//            listView.setAdapter(adapter);
-//            cursor.close();
-//
-//
+
+            List<String> productsTitles = new ArrayList<>();
+
+
+        for (int i = 0; i < list.size(); i++) {
+            productsTitles.add(list.get(i).getTitle());
+        }
+
+//        for (int i = 0; i < productsTitles.size(); i++) {
+//            Log.d("LOGGG", productsTitles.get(i));
 //        }
+
+
+
+//
+            ListView listView = findViewById(R.id.ListViewEl);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsTitles);
+            listView.setAdapter(adapter);
+
+            listView.setOnItemClickListener(this);
     }
 
     public void ClearSearchFild(View view) {
@@ -66,4 +77,11 @@ public class ProductsCatagol extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent intent = new Intent(this, AboutProd.class);// Переход на другую активность
+        intent.putExtra("id_product", position+1);
+        startActivity(intent);
+    }
 }
