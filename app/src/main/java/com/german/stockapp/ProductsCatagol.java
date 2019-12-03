@@ -37,7 +37,7 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
         db = MainActivity.db;
             DAOProduct product = new DAOProduct(db);
 
-            List<Product> list = product.selectAll();
+            List<Product> list = product.selectTitle();
 
 
 

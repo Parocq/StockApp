@@ -34,6 +34,10 @@ public class Operator {
         this.workShiftId = workShiftId;
     }
 
+    public  Operator(String operatorName) {
+        this.operatorName = operatorName;
+    }
+
     public int getId() {
         return id;
     }

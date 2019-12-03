@@ -76,6 +76,8 @@ public class Product {
         this.weightCategoryId = weightCategoryId;
     }
 
+
+
     public Product(String title, String date_of_delivery, int operator_id, int amount,
                    String implementation_period, int locationId, int weightCategoryId) {
         this.title = title;
@@ -91,6 +93,18 @@ public class Product {
         this.title = title;
     }
 
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public WeightCategory getWeightCategory() {
+        return weightCategory;
+    }
+
+    public Operator getOperator() {
+        return operator;
+    }
 
     @Override
     public String toString() {
