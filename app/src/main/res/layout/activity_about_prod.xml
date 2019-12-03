@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:textColor="#000000"
         android:textColorHint="#00000000"
@@ -130,28 +130,26 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="10dp"
         android:background="#F44336"
-        android:shadowColor="#F50000"
         android:text="@string/DelProdBut"
         android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/buttonChangeProdInf"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView06"
-        style="@style/Widget.AppCompat.Button.Borderless"/>
+        android:onClick="onDelProdButClick"/>
 
     <Button
         android:id="@+id/buttonChangeProdInf"
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="150dp"
         android:layout_height="110dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
-        android:backgroundTint="#23090808"
         android:text="@string/AboutProdBut"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonDelProd"
-        app:layout_constraintTop_toBottomOf="@+id/textView06" />
+        app:layout_constraintTop_toBottomOf="@+id/textView06"
+        android:onClick="onChangeProdClick"/>
 
     <TextView
         android:id="@+id/textView07"
@@ -231,7 +229,7 @@
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewF01"
+        app:layout_constraintStart_toStartOf="@+id/textViewF01"
         app:layout_constraintTop_toTopOf="@+id/textView02" />
 
     <TextView
@@ -239,7 +237,7 @@
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewF02"
+        app:layout_constraintStart_toStartOf="@+id/textViewF02"
         app:layout_constraintTop_toTopOf="@+id/textView03" />
 
     <TextView
@@ -247,7 +245,7 @@
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewF03"
+        app:layout_constraintStart_toStartOf="@+id/textViewF03"
         app:layout_constraintTop_toTopOf="@+id/TextView04" />
 
     <TextView
@@ -255,7 +253,7 @@
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewF04"
+        app:layout_constraintStart_toStartOf="@+id/textViewF04"
         app:layout_constraintTop_toTopOf="@+id/textView05" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

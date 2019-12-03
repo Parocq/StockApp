@@ -41,10 +41,6 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
 
 
 
-//            for (int i = 0; i < list.size(); i++) {
-//                Log.d("LOGGG", list.get(i).toString());
-//            }
-
             List<String> productsTitles = new ArrayList<>();
 
 
@@ -52,13 +48,6 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
             productsTitles.add(list.get(i).getTitle());
         }
 
-//        for (int i = 0; i < productsTitles.size(); i++) {
-//            Log.d("LOGGG", productsTitles.get(i));
-//        }
-
-
-
-//
             ListView listView = findViewById(R.id.ListViewEl);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsTitles);
             listView.setAdapter(adapter);

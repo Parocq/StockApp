@@ -106,10 +106,10 @@ public class Product {
         return operator;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "title='" + title + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Product{" +
+//                "title='" + title + '\'' +
+//                '}';
+//    }
 }

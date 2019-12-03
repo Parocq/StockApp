@@ -13,7 +13,7 @@
     <string name="ProdIDmanga">ID продукта в базе данных:</string>
     <string name="tv1">Дата поставки на склад:</string>
     <string name="tv3">Количество на складе:</string>
-    <string name="tv6">Весовая категория:</string>
+    <string name="tv6">Вес продукта:</string>
     <string name="tv9">Полка:</string>
     <string name="LocationPart">Месторасположение</string>
     <string name="tv7">Ряд:</string>
@@ -22,4 +22,6 @@
     <string name="DelProdBut">УДАЛИТЬ ТОВАР</string>
     <string name="AboutProdBut">ИЗМЕНИТЬ ИНФОРМАЦИЮ О ТОВАРЕ</string>
     <string name="tv8">Стелаж:</string>
+    <string name="Change">Подтвердить изменения</string>
+    <string name="IDWK">Номер весовой категории:</string>
 </resources>
