@@ -13,6 +13,8 @@ import com.german.stockapp.entity.Product;
 
 public class AboutProd extends AppCompatActivity {
 
+    int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,12 +23,10 @@ public class AboutProd extends AppCompatActivity {
         TextView textView3, textViewProductTitle, textViewF01, textViewF02, textViewF03, textViewF04, textViewF05, textViewF07, textViewF08, textViewF09;
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
-        int id = bundle.getInt("id_product");
+        id = bundle.getInt("id_product");
 
         String Proverka = Integer.toString(id);
         textView3 = findViewById(R.id.textView3);
-        int product_id = textView3.getId();
-        textView3.setText(Proverka);
 
         DAOProduct daoProduct = new DAOProduct(MainActivity.db);
         Product product =  daoProduct.selectWhere(id);
@@ -71,7 +71,7 @@ public class AboutProd extends AppCompatActivity {
 
     public void onChangeProdClick(View v) {
         Intent intent = new Intent(this, RedactProdInfo.class);// Переход на другую активность
-        intent.putExtra("id_product", product_id);
+        intent.putExtra("id_product", id);
         startActivity(intent);
     }
 }

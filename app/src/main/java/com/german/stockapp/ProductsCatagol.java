@@ -73,4 +73,9 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
         intent.putExtra("id_product", position+1);
         startActivity(intent);
     }
+
+    public void onAddProdClick(View view) {
+        Intent intent = new Intent(this, AddingProduct.class);// Переход на другую активность
+        startActivity(intent);
+    }
 }

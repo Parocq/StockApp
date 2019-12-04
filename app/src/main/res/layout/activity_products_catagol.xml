@@ -30,30 +30,41 @@
         android:layout_width="161dp"
         android:layout_height="73dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
         android:layout_marginEnd="5dp"
+        android:onClick="ClearSearchFild"
         android:text="@string/Clear"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toStartOf="@+id/buttonSearch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
-        android:onClick="ClearSearchFild"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
 
     <Button
         android:id="@+id/buttonSearch"
         android:layout_width="161dp"
         android:layout_height="73dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="19dp"
         android:layout_marginEnd="16dp"
+        android:onClick="buttonSearch"
         android:text="@string/Search"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ClearButton"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSearch"
-        android:onClick="buttonSearch"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearch" />
+
+    <Button
+        android:id="@+id/AddProduct"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/AddProdBut"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="onAddProdClick"/>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
@@ -63,9 +74,11 @@
         <ListView
             android:id="@+id/ListViewEl"
             android:layout_width="match_parent"
-            android:layout_height="533dp"
+            android:layout_height="316dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="176dp"></ListView>
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="145dp"
+            android:layout_marginBottom="50dp"></ListView>
 
     </RelativeLayout>
 

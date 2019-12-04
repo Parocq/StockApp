@@ -2,14 +2,17 @@ package com.german.stockapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.german.stockapp.dao.DAOProduct;
 import com.german.stockapp.entity.Product;
 
-public class RedactProdInfo extends AppCompatActivity {
+public class RedactProdInfo extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +20,7 @@ public class RedactProdInfo extends AppCompatActivity {
         setContentView(R.layout.activity_redact_prod_info);
 
         TextView textViewProductTitle;
-        EditText editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
+        final EditText editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
         int id = bundle.getInt("id_product");
@@ -35,6 +38,26 @@ public class RedactProdInfo extends AppCompatActivity {
         String OpId = Integer.toString(product.getOperator_id());
         editText2 = findViewById(R.id.editText2);
         editText2.setText(OpId);
+
+        editText2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (editText2.getText().toString().isEmpty()) {
+                    editText2.setBackgroundColor(Color.RED);
+                } else  {
+                    editText2.setBackgroundColor(0xAD08CC00);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         String AmOnSt = Integer.toString(product.getAmount());
         editText3 = findViewById(R.id.editText3);
