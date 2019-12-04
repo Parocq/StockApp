@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextLogin, editText1Password;// обозначаем что у нас будут использоваться поля ввода
     static SQLiteDatabase db;
 
+    int AccessLvlOfProf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals(textPassword)) {
+                    AccessLvlOfProf = list.get(i).getRoles_id();// получаем роль
                     Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
+                    intent.putExtra("level", AccessLvlOfProf);
                     startActivity(intent);
                 } else {
                     textIncorrect.setText("Login or password are incorrect");

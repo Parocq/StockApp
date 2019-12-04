@@ -1,9 +1,13 @@
 package com.german.stockapp.dao;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.german.stockapp.entity.Authorization;
 import com.german.stockapp.entity.Roles;
+
+import java.util.ArrayList;
 
 public class DAORoles {
 
@@ -26,4 +30,20 @@ public class DAORoles {
 
     }
 
+    public String selectTitleById(int id){
+        //ArrayList<Roles> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from roles where _id = "+ id +";" ,null);
+        //Roles ro;
+        String role_name=null;
+        if (cursor.moveToFirst()) {
+            do{
+                //int _id = cursor.getInt(0);
+                role_name = cursor.getString(1);
+//                ro = new Roles (_id, role_name);
+//                list.add(ro);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return role_name;
+    }
 }

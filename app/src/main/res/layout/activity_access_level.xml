@@ -58,7 +58,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="onProductsCatagol"/>
+        android:onClick="onProductsCatagol"
+        android:enabled="true"/>
 
     <Button
         android:id="@+id/buttonUnlog"

@@ -24,7 +24,8 @@
     <string name="tv8">Стелаж:</string>
     <string name="Change">Подтвердить изменения</string>
     <string name="IDWK">Номер весовой категории:</string>
-    <string name="AddProdBut">Добавить продукт в базу</string>
+    <string name="AddProdBut">Добавить новый продукт в базу</string>
     <string name="add">Добавить</string>
     <string name="ProdTitle">Наименование товара:</string>
+    <string name="authorization">Авторизоваться</string>
 </resources>
