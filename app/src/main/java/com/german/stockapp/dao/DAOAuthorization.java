@@ -1,5 +1,6 @@
 package com.german.stockapp.dao;
 //commit
+//commit from PC
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
