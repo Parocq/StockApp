@@ -45,7 +45,8 @@
         android:text="@string/WWOperators"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonToProducts" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonToProducts"
+        android:onClick="onOperatorsCatalog"/>
 
     <Button
         android:id="@+id/buttonToProducts"

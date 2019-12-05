@@ -131,7 +131,7 @@ public class DBHelper extends SQLiteOpenHelper {
         daoAuthorization.insert(new Authorization("iKILLyouDONT@sklad.by", "qwerty6", 3, 6));
         daoAuthorization.insert(new Authorization("login", "pass", 3, 7));
 
-        daoAuthorization.insert(new Authorization("ManManager1995@sklad.by", "HardPass211", 1));//поменял местами ID роли
+        daoAuthorization.insert(new Authorization("neHost", "hardpass", 1));//поменял местами ID роли
         daoAuthorization.insert(new Authorization("SomeBodyOnesToldME@sklad.by", "HereWeH0V", 2));//относительно MySQL, не забудь
         daoAuthorization.insert(new Authorization("ReachBOYZ@skald.by", "TryToHack007", 2));//заменить записку
 

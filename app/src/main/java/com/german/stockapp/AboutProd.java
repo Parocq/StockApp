@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.german.stockapp.dao.DAOProduct;
@@ -20,18 +19,15 @@ public class AboutProd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_prod);
 
-        TextView textView3, textViewProductTitle, textViewF01, textViewF02, textViewF03, textViewF04, textViewF05, textViewF07, textViewF08, textViewF09;
+        TextView textViewProductTitle, textViewF01, textViewF02, textViewF03, textViewF04, textViewF05, textViewF07, textViewF08, textViewF09;
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
         id = bundle.getInt("id_product");
 
-        String Proverka = Integer.toString(id);
-        textView3 = findViewById(R.id.textView3);
-
         DAOProduct daoProduct = new DAOProduct(MainActivity.db);
         Product product =  daoProduct.selectWhere(id);
 
-        textViewProductTitle = findViewById(R.id.textViewProductTitle);
+        textViewProductTitle = findViewById(R.id.textViewOperatorName);
         textViewProductTitle.setText(product.getTitle());//цыувкаепнргошлщдзжэх
                                                             // + "" + product.getLocation().getShelf()
         textViewF01 = findViewById(R.id.textViewF01);
@@ -62,8 +58,6 @@ public class AboutProd extends AppCompatActivity {
         String shelf = Integer.toString(product.getLocation().getShelf());
         textViewF09 = findViewById(R.id.textViewF09);
         textViewF09.setText(shelf);
-
-
     }
 
     public void onDelProdButClick(View view) {

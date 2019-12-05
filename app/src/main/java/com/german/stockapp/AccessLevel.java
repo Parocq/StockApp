@@ -52,4 +52,9 @@ public class AccessLevel extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void onOperatorsCatalog(View view) {
+        Intent intent = new Intent(this, OperatorsCatalog.class);// Переход на другую активность
+        startActivity(intent);
+    }
 }

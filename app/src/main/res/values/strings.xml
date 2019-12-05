@@ -28,4 +28,14 @@
     <string name="add">Добавить</string>
     <string name="ProdTitle">Наименование товара:</string>
     <string name="authorization">Авторизоваться</string>
+    <string name="SearchOperator">Поиск сотрудника по ФИО...</string>
+    <string name="createOpAcc">Создать новый аккаунт оператора</string>
+    <string name="Submit">Подтвердить изменение параметров аккаунта</string>
+    <string name="WorkDays">Рабочие дни:</string>
+    <string name="WorkShift">Рабоча смена:</string>
+    <string name="Login">Логин:</string>
+    <string name="Password">Пароль:</string>
+    <string name="FIO">ФИО оператора:</string>
+    <string name="Op_id_in_db">ID operatora в базе данных:</string>
+    <string name="RedOpInf">Измененить параметры аккаунта</string>
 </resources>

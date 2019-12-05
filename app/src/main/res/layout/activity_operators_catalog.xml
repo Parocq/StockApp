@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductsCatagol">
+    tools:context=".OperatorsCatalog">
 
     <EditText
         android:id="@+id/editTextSearch"
         style="@android:style/Widget.EditText"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="51dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:fontFamily="sans-serif"
-        android:hint="@string/SearchProduct"
+        android:hint="@string/SearchOperator"
         android:inputType="textUri"
         android:singleLine="false"
         android:textStyle="bold"
@@ -57,27 +56,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/AddProdBut"
+        android:onClick="onAddProdClick"
+        android:text="@string/createOpAcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:onClick="onAddProdClick"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
+        android:id="@+id/spinnerSort"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ClearButton" />
 
     <RelativeLayout
-        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="165dp"
@@ -87,16 +83,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <ListView
-            android:id="@+id/ListViewEl"
+            android:id="@+id/ListViewOperators"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"></ListView>
-
+            android:layout_height="match_parent" />
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
     tools:context=".AboutProd">
 
     <TextView
-        android:id="@+id/textViewProdId"
+        android:id="@+id/textViewOperatorId"
         android:layout_width="281dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
@@ -21,17 +21,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewOpId"
         android:layout_width="wrap_content"
         android:layout_height="31dp"
         android:layout_marginTop="31dp"
         android:textColor="#000000"
         android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/textViewProdId"
+        app:layout_constraintStart_toEndOf="@+id/textViewOperatorId"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewProductTitle"
+        android:id="@+id/textViewOperatorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -42,7 +42,7 @@
         android:textSize="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProdId" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewOperatorId" />
 
     <TextView
         android:id="@+id/textView01"
@@ -55,7 +55,7 @@
         android:textColorHint="#00000000"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProdId" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewOperatorId" />
 
     <TextView
         android:id="@+id/textView02"
@@ -132,13 +132,13 @@
         android:background="#F44336"
         android:text="@string/DelProdBut"
         android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/buttonChangeProdInf"
+        app:layout_constraintEnd_toStartOf="@+id/RedOpInf"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView06"
         android:onClick="onDelProdButClick"/>
 
     <Button
-        android:id="@+id/buttonChangeProdInf"
+        android:id="@+id/Submit"
         android:layout_width="150dp"
         android:layout_height="110dp"
         android:layout_marginStart="10dp"
