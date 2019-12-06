@@ -54,7 +54,9 @@ public class Product {
         return amount;
     }
 
-    public String getImplementation_period() {return implementation_period; }
+    public String getImplementation_period() {
+        return implementation_period;
+    }
 
     public int getLocationId() {
         return locationId;

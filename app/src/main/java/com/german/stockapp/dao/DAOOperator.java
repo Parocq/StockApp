@@ -1,11 +1,14 @@
 package com.german.stockapp.dao;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.german.stockapp.entity.Operator;
+import com.german.stockapp.entity.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class DAOOperator {
@@ -35,6 +38,22 @@ public class DAOOperator {
 
     public ArrayList<Operator> selectAll() {//  вывод всей таблицы
         ArrayList<Operator> list = new ArrayList<>();// Operator[] list = new Operator[];
+        return list;
+    }
+
+    public List<Operator> SelectFIO() {
+        ArrayList<Operator> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select _id, operator_name from operator", null);
+        Operator op;
+        if (cursor.moveToFirst()) {
+            do {
+                String title = cursor.getString(1);
+
+                op = new Operator(title);
+                list.add(op);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
         return list;
     }
 }
