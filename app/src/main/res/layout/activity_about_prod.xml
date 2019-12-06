@@ -256,4 +256,15 @@
         app:layout_constraintStart_toStartOf="@+id/textViewF04"
         app:layout_constraintTop_toTopOf="@+id/textView05" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:textColorHint="#00000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOperatorId"
+        app:layout_constraintTop_toTopOf="@+id/textViewOperatorId" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

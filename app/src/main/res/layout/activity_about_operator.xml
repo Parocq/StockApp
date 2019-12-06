@@ -121,8 +121,9 @@
     <TextView
         android:id="@+id/textViewFO00"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="35dp"
+        android:layout_marginTop="3dp"
+        android:layout_height="24dp"
         app:layout_constraintBottom_toTopOf="@+id/textView02"
         app:layout_constraintEnd_toEndOf="@+id/textView01"
         app:layout_constraintStart_toStartOf="@+id/textView01"
@@ -131,7 +132,8 @@
     <TextView
         android:id="@+id/textViewFO01"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="@+id/textView02"
         app:layout_constraintStart_toStartOf="@+id/textView02"
         app:layout_constraintTop_toBottomOf="@+id/textView02" />
@@ -139,7 +141,8 @@
     <TextView
         android:id="@+id/textViewFO02"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="@+id/textView03"
         app:layout_constraintStart_toStartOf="@+id/textView03"
         app:layout_constraintTop_toBottomOf="@+id/textView03" />
@@ -147,7 +150,8 @@
     <TextView
         android:id="@+id/textViewFO03"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="3dp"
         app:layout_constraintEnd_toEndOf="@+id/TextView04"
         app:layout_constraintStart_toStartOf="@+id/TextView04"
         app:layout_constraintTop_toBottomOf="@+id/TextView04" />

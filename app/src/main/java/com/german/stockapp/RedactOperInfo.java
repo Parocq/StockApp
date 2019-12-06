@@ -8,6 +8,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.german.stockapp.dao.DAOOperator;
+import com.german.stockapp.entity.Operator;
 
 public class RedactOperInfo extends AppCompatActivity {
 
@@ -16,13 +20,28 @@ public class RedactOperInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_redact_operator_info);
 
-        final EditText editText0, editText1, editText2, editText3, editText4;
+        Bundle bundle = getIntent().getExtras();
+        int id = bundle.getInt("id_operator");
 
+        DAOOperator daoProduct = new DAOOperator(MainActivity.db);
+        Operator operator =  daoProduct.selectWhere(id);
+
+        final EditText editText0, editText1, editText2, editText3, editText4;
+        TextView textViewOpId;
+
+        textViewOpId = findViewById(R.id.textViewOpId);
         editText0 = findViewById(R.id.editText0);
         editText1 = findViewById(R.id.editText1);
         editText2 = findViewById(R.id.editText2);
         editText3 = findViewById(R.id.editText3);
         editText4 = findViewById(R.id.editText4);
+
+        textViewOpId.setText(Integer.toString(id));
+        editText0.setText(operator.getOperatorName());
+        editText1.setText(operator.getWorkDays().getDays());
+        editText2.setText(operator.getWorkShift().getShift());
+        editText3.setText(operator.getAuthorization().getLogin());
+        editText4.setText(operator.getAuthorization().getPass());
 
         editText0.addTextChangedListener(new TextWatcher() {
             @Override

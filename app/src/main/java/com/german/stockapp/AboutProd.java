@@ -19,13 +19,16 @@ public class AboutProd extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_prod);
 
-        TextView textViewProductTitle, textViewF01, textViewF02, textViewF03, textViewF04, textViewF05, textViewF07, textViewF08, textViewF09;
+        TextView textViewProductTitle, textView3, textViewF01, textViewF02, textViewF03, textViewF04, textViewF05, textViewF07, textViewF08, textViewF09;
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
         id = bundle.getInt("id_product");
 
         DAOProduct daoProduct = new DAOProduct(MainActivity.db);
         Product product =  daoProduct.selectWhere(id);
+
+        textView3 = findViewById(R.id.textView3);
+        textView3.setText(Integer.toString(id));
 
         textViewProductTitle = findViewById(R.id.textViewOperatorName);
         textViewProductTitle.setText(product.getTitle());//цыувкаепнргошлщдзжэх
