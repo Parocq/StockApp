@@ -168,13 +168,14 @@
     <EditText
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
-        android:layout_height="26dp"
+        android:layout_height="0dp"
         android:layout_marginTop="3dp"
         android:ems="10"
-        android:textSize="22sp"
-        android:textStyle="italic"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/textView02"
         app:layout_constraintEnd_toEndOf="@+id/textView01"
         app:layout_constraintStart_toStartOf="@+id/textView01"
         app:layout_constraintTop_toBottomOf="@+id/textView01" />

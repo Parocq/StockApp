@@ -1,5 +1,5 @@
 package com.german.stockapp;
-// rdhujerperjiejgioejoirij
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;

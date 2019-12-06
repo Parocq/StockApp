@@ -58,7 +58,6 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
     public void ClearSearchFild(View view) {
         TextView editTextSearch = new TextView(this);
         editTextSearch = (TextView) findViewById(R.id.editTextSearch);
-
         editTextSearch.setText("");
     }
 

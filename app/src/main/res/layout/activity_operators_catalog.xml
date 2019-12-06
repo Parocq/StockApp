@@ -30,7 +30,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="5dp"
-        android:onClick="ClearSearchFild"
+        android:onClick="ClearSearchField"
         android:text="@string/Clear"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toStartOf="@+id/buttonSearch"
