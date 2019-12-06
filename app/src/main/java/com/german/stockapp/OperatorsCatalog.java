@@ -47,7 +47,7 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Intent intent = new Intent(this, AboutProd.class);// Переход на другую активность
+        Intent intent = new Intent(this, AboutOperator.class);// Переход на другую активность
         intent.putExtra("id_operator", position+1);
         startActivity(intent);
     }

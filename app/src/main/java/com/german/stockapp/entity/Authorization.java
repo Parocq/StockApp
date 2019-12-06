@@ -40,6 +40,11 @@ private Roles roles;
         this.roles_id = roles_id;
     }
 
+    public Authorization(String login, String pass) {
+        this.login = login;
+        this.pass = pass;
+    }
+
     public int getId() {
         return id;
     }

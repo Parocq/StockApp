@@ -4,8 +4,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.german.stockapp.entity.Authorization;
 import com.german.stockapp.entity.Operator;
 import com.german.stockapp.entity.Product;
+import com.german.stockapp.entity.WorkDays;
+import com.german.stockapp.entity.WorkShift;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,5 +58,36 @@ public class DAOOperator {
             cursor.close();
         }
         return list;
+    }
+
+    public Operator selectWhere(int id) {
+
+        Cursor cursor = db.rawQuery("SELECT o._id, o.operator_name, wd.days, ws.shift, a.login, a.pass from operator o\n" +
+                "INNER JOIN work_days wd on wd._id=o.work_days_id INNER JOIN work_shift ws ON\n" +
+                "ws._id=o.work_shift_id INNER JOIN authorization a on a.operator_id = o._id where o._id = " + id + ";", null);
+
+        Operator op = null;
+        if (cursor.moveToFirst()) {
+            do {
+                int _id = cursor.getInt(0);
+                String operator_name = cursor.getString(1);
+
+                String days = cursor.getString(2);
+                WorkDays workDays = new WorkDays(days);
+
+                String shift = cursor.getString(3);
+                WorkShift workShift = new WorkShift(shift);
+
+                String login = cursor.getString(4);
+                String pass = cursor.getString(5);
+                Authorization authorization = new Authorization(login, pass);
+
+                op = new Operator(_id, operator_name, workShift,workDays, authorization);
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return op;
+
     }
 }
