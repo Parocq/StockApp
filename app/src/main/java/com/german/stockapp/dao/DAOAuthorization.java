@@ -1,6 +1,5 @@
 package com.german.stockapp.dao;
-//commit
-//commit from PC
+
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,9 +13,6 @@ import java.util.ArrayList;
 public class DAOAuthorization {
 
         SQLiteDatabase db;
-
-        public DAOAuthorization() {
-        }
 
         public DAOAuthorization (SQLiteDatabase db) {this.db = db;}
 

@@ -43,18 +43,18 @@ public class DAOProduct {
     }
 
 
-    public void AddProduct(Product prod){
-        db.execSQL("insert INTO product(title, date_of_delivery, operator_id,\n" +
-                " amount, implementation_period,location_id, weight_category_id)\n" +
-                "VALUES (\"" + prod.getTitle() + "\",\"" +
-                prod.getDate_of_delivery() + "\",\"" +
-                prod.getOperator() + "\",\"" +
-                prod.getAmount() + "\",\"" +
-                prod.getImplementation_period() + "\",\"" +
-                prod.getLocation() + "\",\"" +
-                prod.getWeightCategory() + "\")");
-        db.close();
+    public void AddProduct(Product product){
+        db.execSQL("insert INTO product(title, date_of_delivery, operator_id," +
+                " amount, implementation_period,location_id, weight_category_id)" +
+                "VALUES (\"" + product.getTitle() + "\",\"" +
+                product.getDate_of_delivery() + "\",\"" +
+                product.getOperator_id() + "\",\"" +
+                product.getAmount() + "\",\"" +
+                product.getImplementation_period() + "\",\"" +
+                product.getLocationId() + "\",\"" +
+                product.getWeightCategoryId() + "\")");
     }
+
 
     public ArrayList<Product> selectTitle() {
         ArrayList<Product> list = new ArrayList<>();

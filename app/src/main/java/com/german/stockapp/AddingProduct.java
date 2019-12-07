@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.german.stockapp.dao.DAOLocation;
 import com.german.stockapp.dao.DAOProduct;
+import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Location;
 import com.german.stockapp.entity.Product;
 
@@ -19,10 +20,12 @@ public class AddingProduct extends AppCompatActivity {
 
     SQLiteDatabase db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_product);
+
 
         final EditText editText0, editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
 
@@ -190,11 +193,14 @@ public class AddingProduct extends AppCompatActivity {
         });
     }
 
-    public void onSubtimAddClic(View view) {
+    public void onAddProduct(View view) {
 
         final EditText editText0, editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
 
         int id;
+
+        DBHelper dbHelper = new DBHelper(this);// копируем экземпляр для чтения и редактирования
+        db = dbHelper.getWritableDatabase();//
 
         editText0 = findViewById(R.id.editText0);
         editText1 = findViewById(R.id.editText1);
@@ -213,11 +219,11 @@ public class AddingProduct extends AppCompatActivity {
 
         id = daoLocation.addLocation(location);
 
-        Product prod = new Product(editText0.getText().toString(), editText1.getText().toString(),
+        Product product = new Product(editText0.getText().toString(), editText1.getText().toString(),
                 Integer.parseInt(editText2.getText().toString()),Integer.parseInt(editText3.getText().toString()),
-                editText4.getText().toString(), Integer.parseInt(editText5.getText().toString()), id);
+                editText4.getText().toString(),id, Integer.parseInt(editText5.getText().toString()));
 
         DAOProduct daoProduct = new DAOProduct(db);
-        daoProduct.AddProduct(prod);
+        daoProduct.AddProduct(product);
     }
 }

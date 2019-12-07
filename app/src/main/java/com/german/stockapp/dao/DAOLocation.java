@@ -25,14 +25,13 @@ public class DAOLocation {
     }
 
     public int addLocation(Location location) {
-        db.execSQL("insert INTO location(line, rack, shelf)\n" +
+        db.execSQL("insert INTO location(line, rack, shelf)" +
                 "VALUES (\"" + location.getLine() + "\",\"" +
                 location.getRack() + "\",\"" +
                 location.getShelf() + "\")");
         Cursor cursor = db.rawQuery("SELECT max(_id) FROM location", null);
         cursor.moveToFirst();
         int id = cursor.getInt(0);
-        db.close();
         cursor.close();
         return id;
     }

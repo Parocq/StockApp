@@ -10,11 +10,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
 import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Authorization;
 import com.german.stockapp.dao.DAOAuthorization;
-
 
 import java.util.ArrayList;
 

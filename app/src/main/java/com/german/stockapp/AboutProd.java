@@ -3,16 +3,19 @@ package com.german.stockapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.german.stockapp.dao.DAOProduct;
+import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Product;
 
 public class AboutProd extends AppCompatActivity {
 
     int id;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,8 @@ public class AboutProd extends AppCompatActivity {
         textView3.setText(Integer.toString(id));
 
         textViewProductTitle = findViewById(R.id.textViewOperatorName);
-        textViewProductTitle.setText(product.getTitle());//цыувкаепнргошлщдзжэх
-                                                            // + "" + product.getLocation().getShelf()
+        textViewProductTitle.setText(product.getTitle());
+
         textViewF01 = findViewById(R.id.textViewF01);
         textViewF01.setText(product.getDate_of_delivery());
 

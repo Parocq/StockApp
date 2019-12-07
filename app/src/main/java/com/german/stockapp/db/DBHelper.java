@@ -58,23 +58,30 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE operator(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "operator_name TEXT," +
-                "work_days_id INTEGER REFERENCES work_days(id)," +
-                "work_shift_id INTEGER REFERENCES work_shift(id));");
+                "work_days_id INTEGER," +
+                "work_shift_id INTEGER," +
+                "FOREIGN KEY (work_days_id)  REFERENCES work_days(id) ON UPDATE CASCADE," +
+                "FOREIGN KEY (work_shift_id)  REFERENCES work_shift(id) ON UPDATE CASCADE );");
 
         db.execSQL("CREATE TABLE authorization(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "login TEXT," +
                 "pass TEXT," +
-                "roles_id INTEGER REFERENCES roles(id)," +
-                "operator_id INTEGER REFERENCES operator(id));");
+                "roles_id INTEGER," +
+                "operator_id INTEGER," +
+                "FOREIGN KEY (roles_id)  REFERENCES roles(id) ON UPDATE CASCADE," +
+                "FOREIGN KEY (operator_id) REFERENCES operator(id) ON UPDATE CASCADE);");
 
         db.execSQL("CREATE TABLE product(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT," +
                 "date_of_delivery TEXT," +
-                "operator_id INTEGER REFERENCES operator(id)," +
+                "operator_id INTEGER ," +
                 "amount INTEGER," +
                 "implementation_period TEXT," +
-                "location_id INTEGER REFERENCES location(id)," +
-                "weight_category_id INTEGER REFERENCES weight_category(id));");
+                "location_id INTEGER," +
+                "weight_category_id INTEGER," +
+                "FOREIGN KEY (operator_id) REFERENCES operator(id) ON UPDATE CASCADE," +
+                "FOREIGN KEY (location_id) REFERENCES location(id) ON UPDATE CASCADE," +
+                "FOREIGN KEY (weight_category_id) REFERENCES weight_category(id) ON UPDATE CASCADE);");
 
         // Work_shift data
         DAOWorkShift daoWorkShift = new DAOWorkShift(db);
