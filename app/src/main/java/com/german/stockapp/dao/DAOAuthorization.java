@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.german.stockapp.AboutOperator;
 import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Authorization;
 
@@ -36,6 +37,7 @@ public class DAOAuthorization {
         public void delete(Authorization obj) {
 
         }
+
         public ArrayList<Authorization> selectAll(){
                 ArrayList<Authorization> list = new ArrayList<>();
                 Cursor  cursor = db.rawQuery("select * from authorization" ,null);

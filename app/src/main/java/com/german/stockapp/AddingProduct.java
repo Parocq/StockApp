@@ -2,6 +2,7 @@ package com.german.stockapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,7 +10,14 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 
+import com.german.stockapp.dao.DAOLocation;
+import com.german.stockapp.dao.DAOProduct;
+import com.german.stockapp.entity.Location;
+import com.german.stockapp.entity.Product;
+
 public class AddingProduct extends AppCompatActivity {
+
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,5 +192,32 @@ public class AddingProduct extends AppCompatActivity {
 
     public void onSubtimAddClic(View view) {
 
+        final EditText editText0, editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
+
+        int id;
+
+        editText0 = findViewById(R.id.editText0);
+        editText1 = findViewById(R.id.editText1);
+        editText2 = findViewById(R.id.editText2);
+        editText3 = findViewById(R.id.editText3);
+        editText4 = findViewById(R.id.editText4);
+        editText5 = findViewById(R.id.editText5);
+
+        editText6 = findViewById(R.id.editText6);
+        editText7 = findViewById(R.id.editText7);
+        editText8 = findViewById(R.id.editText8);
+
+        Location location = new Location(Integer.parseInt(editText6.getText().toString()),
+                Integer.parseInt(editText7.getText().toString()),Integer.parseInt(editText8.getText().toString()));
+        DAOLocation daoLocation = new DAOLocation(db);
+
+        id = daoLocation.addLocation(location);
+
+        Product prod = new Product(editText0.getText().toString(), editText1.getText().toString(),
+                Integer.parseInt(editText2.getText().toString()),Integer.parseInt(editText3.getText().toString()),
+                editText4.getText().toString(), Integer.parseInt(editText5.getText().toString()), id);
+
+        DAOProduct daoProduct = new DAOProduct(db);
+        daoProduct.AddProduct(prod);
     }
 }

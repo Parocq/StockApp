@@ -34,6 +34,20 @@ public class Product {
         this.operator = operator;
     }
 
+    public Product(String title, String date_of_delivery, int operator_id, int amount, String implementation_period,
+                   int locationId, int weightCategoryId, Location location, WeightCategory weightCategory, Operator operator) {
+        this.title = title;
+        this.date_of_delivery = date_of_delivery;
+        this.operator_id = operator_id;
+        this.amount = amount;
+        this.implementation_period = implementation_period;
+        this.locationId = locationId;
+        this.weightCategoryId = weightCategoryId;
+        this.location = location;
+        this.weightCategory = weightCategory;
+        this.operator = operator;
+    }
+
     public int getId() {
         return id;
     }

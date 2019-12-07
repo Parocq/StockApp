@@ -21,7 +21,6 @@ public class DAOProduct {
 
 
     public void insert(Product obj) {
-
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", obj.getTitle());
         contentValues.put("date_of_delivery", obj.getDate_of_delivery());// Гугли про дату и время SQLite
@@ -41,6 +40,20 @@ public class DAOProduct {
 
     public void delete(Product obj) {
 
+    }
+
+
+    public void AddProduct(Product prod){
+        db.execSQL("insert INTO product(title, date_of_delivery, operator_id,\n" +
+                " amount, implementation_period,location_id, weight_category_id)\n" +
+                "VALUES (\"" + prod.getTitle() + "\",\"" +
+                prod.getDate_of_delivery() + "\",\"" +
+                prod.getOperator() + "\",\"" +
+                prod.getAmount() + "\",\"" +
+                prod.getImplementation_period() + "\",\"" +
+                prod.getLocation() + "\",\"" +
+                prod.getWeightCategory() + "\")");
+        db.close();
     }
 
     public ArrayList<Product> selectTitle() {
