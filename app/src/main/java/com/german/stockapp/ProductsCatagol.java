@@ -44,6 +44,7 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener(this);
+            adapter.notifyDataSetChanged();// изменения при удалении и т.п.
     }
 
     public void ClearSearchFild(View view) {
@@ -54,6 +55,27 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
 
     public void buttonSearch(View view) {
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//
+//        DAOProduct product = new DAOProduct(db);
+//
+//        List<Product> list = product.selectTitle();
+//
+//        List<String> productsTitles = new ArrayList<>();
+//
+//        for (int i = 0; i < list.size(); i++) {
+//            productsTitles.add(list.get(i).getTitle());
+//        }
+//
+//        ListView listView = findViewById(R.id.ListViewEl);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsTitles);
+//        listView.setAdapter(adapter);
+//
+//        listView.setOnItemClickListener(this);
+//    }
 
 
     @Override

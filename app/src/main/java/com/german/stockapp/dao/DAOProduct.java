@@ -73,6 +73,10 @@ public class DAOProduct {
         return list;
     }
 
+    public  void deleteByID (int id) {
+        db.execSQL("DELETE FROM product where _id="+ id +";");
+    }
+
     public Product selectWhere(int id) {
 
         Cursor cursor = db.rawQuery("select * from product p inner join location l on p.location_id=l._id INNER JOIN operator o on p.operator_id = o.\"_id\" \n" +

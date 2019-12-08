@@ -67,6 +67,16 @@ public class AboutProd extends AppCompatActivity {
     }
 
     public void onDelProdButClick(View view) {
+        DBHelper dbHelper = new DBHelper(this);// копируем экземпляр для чтения и редактирования
+        db = dbHelper.getWritableDatabase();//
+
+        DAOProduct daoProduct = new DAOProduct(db);
+        daoProduct.deleteByID(id);
+
+       // db.delete("product", "_id = "+ id +"", null );
+
+        Intent intent = new Intent(this, MainActivity.class);// Переход на другую активность
+        startActivity(intent);
     }
 
     public void onChangeProdClick(View v) {

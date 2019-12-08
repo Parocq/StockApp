@@ -60,16 +60,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 "operator_name TEXT," +
                 "work_days_id INTEGER," +
                 "work_shift_id INTEGER," +
-                "FOREIGN KEY (work_days_id)  REFERENCES work_days(id) ON UPDATE CASCADE," +
-                "FOREIGN KEY (work_shift_id)  REFERENCES work_shift(id) ON UPDATE CASCADE );");
+                "FOREIGN KEY (work_days_id)  REFERENCES work_days(id)  ON DELETE CASCADE ON UPDATE CASCADE," +
+                "FOREIGN KEY (work_shift_id)  REFERENCES work_shift(id)  ON DELETE CASCADE ON UPDATE CASCADE );");
 
         db.execSQL("CREATE TABLE authorization(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "login TEXT," +
                 "pass TEXT," +
                 "roles_id INTEGER," +
                 "operator_id INTEGER," +
-                "FOREIGN KEY (roles_id)  REFERENCES roles(id) ON UPDATE CASCADE," +
-                "FOREIGN KEY (operator_id) REFERENCES operator(id) ON UPDATE CASCADE);");
+                "FOREIGN KEY (roles_id)  REFERENCES roles(id)  ON DELETE CASCADE ON UPDATE CASCADE," +
+                "FOREIGN KEY (operator_id) REFERENCES operator(id)  ON DELETE CASCADE ON UPDATE CASCADE);");
 
         db.execSQL("CREATE TABLE product(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT," +
@@ -79,9 +79,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 "implementation_period TEXT," +
                 "location_id INTEGER," +
                 "weight_category_id INTEGER," +
-                "FOREIGN KEY (operator_id) REFERENCES operator(id) ON UPDATE CASCADE," +
-                "FOREIGN KEY (location_id) REFERENCES location(id) ON UPDATE CASCADE," +
-                "FOREIGN KEY (weight_category_id) REFERENCES weight_category(id) ON UPDATE CASCADE);");
+                "FOREIGN KEY (operator_id) REFERENCES operator(id) ON DELETE CASCADE ON UPDATE CASCADE," +
+                "FOREIGN KEY (location_id) REFERENCES location(id) ON DELETE CASCADE ON UPDATE CASCADE," +
+                "FOREIGN KEY (weight_category_id) REFERENCES weight_category(id)  ON DELETE CASCADE ON UPDATE CASCADE);");
 
         // Work_shift data
         DAOWorkShift daoWorkShift = new DAOWorkShift(db);
