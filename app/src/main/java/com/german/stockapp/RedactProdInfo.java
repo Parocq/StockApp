@@ -2,18 +2,27 @@ package com.german.stockapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.german.stockapp.dao.DAOLocation;
 import com.german.stockapp.dao.DAOProduct;
+import com.german.stockapp.db.DBHelper;
+import com.german.stockapp.entity.Location;
 import com.german.stockapp.entity.Product;
 
+import java.util.ArrayList;
+
 public class RedactProdInfo extends AppCompatActivity{
+
+    SQLiteDatabase db;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +32,16 @@ public class RedactProdInfo extends AppCompatActivity{
         final EditText editText0, editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
-        int id = bundle.getInt("id_product");
+        id = bundle.getInt("id_product");
 
         DAOProduct daoProduct = new DAOProduct(MainActivity.db);
         Product product =  daoProduct.selectWhere(id);
 
         editText0 = findViewById(R.id.editText0);
-        editText0.setText(product.getTitle());//цыувкаепнргошлщдзжэх
+        editText0.setText(product.getTitle());
 
         editText1 = findViewById(R.id.editText1);
         editText1.setText(product.getDate_of_delivery());
-
 
         String OpId = Integer.toString(product.getOperator_id());
         editText2 = findViewById(R.id.editText2);
@@ -217,5 +225,77 @@ public class RedactProdInfo extends AppCompatActivity{
     }
 
     public void SubmitProdRedact(View view) {
+
+        final EditText editText0, editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
+
+        int location_id = 0, weight_categoty_id=0, locCheck=0;
+
+        editText0 = findViewById(R.id.editText0);
+        editText1 = findViewById(R.id.editText1);
+        editText2 = findViewById(R.id.editText2);
+        editText3 = findViewById(R.id.editText3);
+        editText4 = findViewById(R.id.editText4);
+        editText5 = findViewById(R.id.editText5);// weight_cat
+        editText6 = findViewById(R.id.editText6);// line
+        editText7 = findViewById(R.id.editText7);// rack
+        editText8 = findViewById(R.id.editText8);// shelf
+
+        DBHelper dbHelper = new DBHelper(this);
+        db = dbHelper.getWritableDatabase();
+
+        String WK_name = editText5.getText().toString();
+        if(WK_name.equals("Лёгкий")){
+            weight_categoty_id = 1;
+        } else if (WK_name.equals("Легкий")){
+            weight_categoty_id = 1;
+        } else if (WK_name.equals("Средний")) {
+            weight_categoty_id = 2;
+        } else if (WK_name.equals("Тяжелый")) {
+            weight_categoty_id = 3;
+        } else weight_categoty_id=2;
+//        switch (WK_name) {
+//            case "Лёгкий": weight_categoty_id = 1;
+//                break;
+//            case "Легкий": weight_categoty_id = 1;
+//                break;
+//            case "Средний": weight_categoty_id = 2;
+//                break;
+//            case "Тяжелый": weight_categoty_id = 3;
+//                break;
+//            //default: //вывести что ошибка + брейк
+//        }
+
+        DAOLocation daoLocation = new DAOLocation(db);
+        ArrayList<Location> locationList = daoLocation.selectAll();
+
+        int line = Integer.parseInt(editText6.getText().toString());
+        int rack = Integer.parseInt(editText7.getText().toString());
+        int shelf = Integer.parseInt(editText8.getText().toString());
+
+        for (int i = 0; i < locationList.size(); i++) {
+            if (locationList.get(i).getLine()== line &&
+                    locationList.get(i).getRack() == rack &&
+                    locationList.get(i).getShelf() == shelf)
+            {
+                location_id = locationList.get(i).getId();
+                break;
+            } else {
+                locCheck = 1;
+            }
+        }
+        if (locCheck == 1){
+            Location location = new Location(line,rack,shelf);
+            location_id = daoLocation.addLocation(location);
+        }
+
+        Product product = new Product(editText0.getText().toString(), editText1.getText().toString(),
+                Integer.parseInt(editText2.getText().toString()),Integer.parseInt(editText3.getText().toString()),
+                editText4.getText().toString(),
+                location_id,// location_id
+                weight_categoty_id);//weight_category
+
+        DAOProduct daoProduct = new DAOProduct(db);
+        daoProduct.redactProd(product, id);
+
     }
 }

@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.german.stockapp.entity.Location;
 
+import java.util.ArrayList;
+
 public class DAOLocation {
 
     SQLiteDatabase db;
@@ -35,6 +37,25 @@ public class DAOLocation {
         cursor.close();
         return id;
     }
+
+    public ArrayList<Location> selectAll(){
+        ArrayList<Location> list = new ArrayList<>();
+        Cursor  cursor = db.rawQuery("select * from location" ,null);
+        Location loc;
+        if (cursor.moveToFirst()) {
+            do{
+                int _id = cursor.getInt(0);
+                int line = cursor.getInt(1);
+                int rack = cursor.getInt(2);
+                int shelf = cursor.getInt(3);
+                loc = new Location (_id, line , rack, shelf);
+                list.add(loc);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
 
     public void update(Location obj) {
 

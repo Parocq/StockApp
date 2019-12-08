@@ -77,8 +77,6 @@ public class AboutProd extends AppCompatActivity {
 
         Intent intent = new Intent(this, ProductsCatagol.class);// Переход на другую активность
         startActivity(intent);
-//        Intent intent = new Intent(this, ProductsCatagol.class);
-//        startActivityForResult(intent, 1)
         }
 
     public void onChangeProdClick(View v) {

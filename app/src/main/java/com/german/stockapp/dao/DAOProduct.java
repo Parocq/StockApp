@@ -42,6 +42,16 @@ public class DAOProduct {
 
     }
 
+    public void redactProd (Product product, int id){
+        db.execSQL("UPDATE product SET title = \""+ product.getTitle() + "\"," +
+                "date_of_delivery = \"" + product.getDate_of_delivery() + "\"," +
+                "operator_id = \"" + product.getOperator_id() + "\"," +
+                "amount = \"" + product.getAmount() + "\"," +
+                "implementation_period = \"" + product.getImplementation_period() + "\"," +
+                "weight_category_id = \"" + product.getWeightCategoryId() + "\"," +
+                "location_id = \"" + product.getLocationId()+"\"where _id = \"" + id + "\";\"");
+    }
+
 
     public void AddProduct(Product product){
         db.execSQL("insert INTO product(title, date_of_delivery, operator_id," +
@@ -77,11 +87,11 @@ public class DAOProduct {
         db.execSQL("DELETE FROM product where _id="+ id +";");
     }
 
+
     public Product selectWhere(int id) {
 
         Cursor cursor = db.rawQuery("select * from product p inner join location l on p.location_id=l._id INNER JOIN operator o on p.operator_id = o.\"_id\" \n" +
                 "        inner join weight_category w on p.weight_category_id = w._id where p._id = " + id + ";", null);
-
         Product pr = null;
         if (cursor.moveToFirst()) {
             do {

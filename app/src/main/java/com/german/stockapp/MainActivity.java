@@ -63,28 +63,8 @@ public class MainActivity extends AppCompatActivity {
                     textIncorrect.setText("Login or password are incorrect");
                 }
             }
-//                do {
-//
-//                    if (textLogin == cursor.getString(cursor.getColumnIndex(DBHelper.AUTHORIZATION_LOGIN))
-//                            && textPassword == cursor.getString(cursor.getColumnIndex(DBHelper.AUTHORIZATION_PASS))) {
-//                        Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
-//                        startActivity(intent);//
-//                    } else finish();
-//
-//                } while (cursor.moveToNext()); // перебираем все, пока не доберемся до последней
         } else cursor.close();
-
     }
 }
-
-
-//        String textLogin = editTextLogin.getText().toString();
-//        String textPassword = editTextLogin.getText().toString();
-//        //String text2 = Integer.parseInt(editTextLogin.getText().toString());// parse - перевод в INT
-//        //int text3 = Integer.parseInt(editText.getText().toString());
-//
-//        DAOAuthorization daoAuthorization = new DAOAuthorization(db);
-//       // DAOAuthorization.insert(new Operator(text1, text2, text3));
-
 
 
