@@ -62,10 +62,10 @@ public class DAOProduct {
         Product pr;
         if (cursor.moveToFirst()) {
             do {
-//                                int id = cursor.getInt(0);
+                int id = cursor.getInt(0);
                 String title = cursor.getString(1);
 
-                pr = new Product(title);
+                pr = new Product(id, title);
                 list.add(pr);
             } while (cursor.moveToNext());
             cursor.close();

@@ -80,16 +80,9 @@ public class Product {
         return weightCategoryId;
     }
 
-    public Product(int id, String title, String date_of_delivery, int operator_id, int amount,
-                   String implementation_period, int locationId, int weightCategoryId) {
+    public Product(int id, String title) {
         this.id = id;
         this.title = title;
-        this.date_of_delivery = date_of_delivery;
-        this.operator_id = operator_id;
-        this.amount = amount;
-        this.implementation_period = implementation_period;
-        this.locationId = locationId;
-        this.weightCategoryId = weightCategoryId;
     }
 
 

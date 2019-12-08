@@ -75,9 +75,11 @@ public class AboutProd extends AppCompatActivity {
 
        // db.delete("product", "_id = "+ id +"", null );
 
-        Intent intent = new Intent(this, MainActivity.class);// Переход на другую активность
+        Intent intent = new Intent(this, ProductsCatagol.class);// Переход на другую активность
         startActivity(intent);
-    }
+//        Intent intent = new Intent(this, ProductsCatagol.class);
+//        startActivityForResult(intent, 1)
+        }
 
     public void onChangeProdClick(View v) {
         Intent intent = new Intent(this, RedactProdInfo.class);// Переход на другую активность

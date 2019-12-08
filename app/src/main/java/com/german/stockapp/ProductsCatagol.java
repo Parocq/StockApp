@@ -21,6 +21,9 @@ import java.util.List;
 public class ProductsCatagol extends AppCompatActivity implements ListView.OnItemClickListener {
 
     SQLiteDatabase db;
+    private ArrayAdapter<String> adapter;
+    private ListView listView;
+    private List<Product> list;
 
 
     @Override
@@ -29,22 +32,20 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
         setContentView(R.layout.activity_products_catagol);
 
         db = MainActivity.db;
-            DAOProduct product = new DAOProduct(db);
+        DAOProduct product = new DAOProduct(db);
 
-            List<Product> list = product.selectTitle();
-
-            List<String> productsTitles = new ArrayList<>();
+        list = product.selectTitle();
+        List<String> productsTitles = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
             productsTitles.add(list.get(i).getTitle());
         }
 
-            ListView listView = findViewById(R.id.ListViewEl);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsTitles);
-            listView.setAdapter(adapter);
-
-            listView.setOnItemClickListener(this);
-            adapter.notifyDataSetChanged();// изменения при удалении и т.п.
+        listView = findViewById(R.id.ListViewEl);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsTitles);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
+        adapter.notifyDataSetChanged();// изменения при удалении и т.п.
     }
 
     public void ClearSearchFild(View view) {
@@ -56,33 +57,36 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
     public void buttonSearch(View view) {
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        DAOProduct product = new DAOProduct(db);
-//
-//        List<Product> list = product.selectTitle();
-//
-//        List<String> productsTitles = new ArrayList<>();
-//
-//        for (int i = 0; i < list.size(); i++) {
-//            productsTitles.add(list.get(i).getTitle());
-//        }
-//
-//        ListView listView = findViewById(R.id.ListViewEl);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsTitles);
-//        listView.setAdapter(adapter);
-//
-//        listView.setOnItemClickListener(this);
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        DAOProduct product = new DAOProduct(db);
+
+        List<Product> list = product.selectTitle();
+
+        List<String> productsTitles = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            productsTitles.add(list.get(i).getTitle());
+        }
+
+        listView = findViewById(R.id.ListViewEl);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsTitles);
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Intent intent = new Intent(this, AboutProd.class);// Переход на другую активность
-        intent.putExtra("id_product", position+1);
+        intent.putExtra("id_product", list.get(position).getId());
         startActivity(intent);
     }
 
