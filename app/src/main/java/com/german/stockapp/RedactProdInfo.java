@@ -1,8 +1,9 @@
 package com.german.stockapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -252,18 +253,25 @@ public class RedactProdInfo extends AppCompatActivity{
             weight_categoty_id = 2;
         } else if (WK_name.equals("Тяжелый")) {
             weight_categoty_id = 3;
-        } else weight_categoty_id=2;
-//        switch (WK_name) {
-//            case "Лёгкий": weight_categoty_id = 1;
-//                break;
-//            case "Легкий": weight_categoty_id = 1;
-//                break;
-//            case "Средний": weight_categoty_id = 2;
-//                break;
-//            case "Тяжелый": weight_categoty_id = 3;
-//                break;
-//            //default: //вывести что ошибка + брейк
-//        }
+        } else {
+            AlertDialog.Builder noWC = new AlertDialog.Builder(RedactProdInfo.this);
+            noWC.setMessage("Введите существующую весовую категорию:" +
+                    "1)Лёгкий" +
+                    "2)Средний" +
+                    "3)Тяжёлый")
+                    .setCancelable(false)
+                    .setCancelable(false)
+                    .setNegativeButton("ОК",
+                            new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }});
+
+            AlertDialog alert = noWC.create();
+            alert.setTitle("Ошибка заполнения");
+            alert.show();
+            editText5.setText("0");
+        }
 
         DAOLocation daoLocation = new DAOLocation(db);
         ArrayList<Location> locationList = daoLocation.selectAll();
@@ -288,14 +296,32 @@ public class RedactProdInfo extends AppCompatActivity{
             location_id = daoLocation.addLocation(location);
         }
 
-        Product product = new Product(editText0.getText().toString(), editText1.getText().toString(),
-                Integer.parseInt(editText2.getText().toString()),Integer.parseInt(editText3.getText().toString()),
-                editText4.getText().toString(),
-                location_id,// location_id
-                weight_categoty_id);//weight_category
+        if (editText0.getText().toString().isEmpty() || editText1.getText().toString().isEmpty() ||
+                Integer.parseInt(editText2.getText().toString()) == 0 ||
+                Integer.parseInt(editText3.getText().toString()) == 0 ||
+                editText4.getText().toString().isEmpty() || weight_categoty_id == 0)
+        {
+            AlertDialog.Builder retry = new AlertDialog.Builder(RedactProdInfo.this);
+            retry.setMessage("Проверьте правильность введенных данных.")
+                    .setCancelable(false)
+                    .setCancelable(false)
+                    .setNegativeButton("ОК",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }});
+            AlertDialog alert = retry.create();
+            alert.setTitle("Ошибка заполнения");
+            alert.show();
+        } else {
+            Product product = new Product(editText0.getText().toString(), editText1.getText().toString(),
+                    Integer.parseInt(editText2.getText().toString()),Integer.parseInt(editText3.getText().toString()),
+                    editText4.getText().toString(),
+                    location_id,// location_id
+                    weight_categoty_id);//weight_category
 
-        DAOProduct daoProduct = new DAOProduct(db);
-        daoProduct.redactProd(product, id);
+            DAOProduct daoProduct = new DAOProduct(db);
+            daoProduct.redactProd(product, id);}
 
     }
 }
