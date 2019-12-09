@@ -296,6 +296,14 @@ public class RedactProdInfo extends AppCompatActivity{
             location_id = daoLocation.addLocation(location);
         }
 
+        if (editText2.getText().toString().isEmpty()){
+            editText2.setText("0");
+        }
+
+        if (editText3.getText().toString().isEmpty()){
+            editText3.setText("0");
+        }
+
         if (editText0.getText().toString().isEmpty() || editText1.getText().toString().isEmpty() ||
                 Integer.parseInt(editText2.getText().toString()) == 0 ||
                 Integer.parseInt(editText3.getText().toString()) == 0 ||
