@@ -40,8 +40,34 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
         ListView listView = findViewById(R.id.ListViewOperators);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operatorsNames);
         listView.setAdapter(adapter);
-
         listView.setOnItemClickListener(this);
+        adapter.notifyDataSetChanged();// изменения при удалении и т.п.
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        DAOOperator operator = new DAOOperator(db);
+
+        List<Operator> list = operator.SelectFIO();
+
+        List<String> operatorsNames = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            operatorsNames.add(list.get(i).getOperatorName());
+        }
+
+        ListView listView = findViewById(R.id.ListViewOperators);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operatorsNames);
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
     }
 
     @Override

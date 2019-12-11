@@ -89,7 +89,6 @@ public class DAOProduct {
 
 
     public Product selectWhere(int id) {
-
         Cursor cursor = db.rawQuery("select * from product p inner join location l on p.location_id=l._id INNER JOIN operator o on p.operator_id = o.\"_id\" \n" +
                 "        inner join weight_category w on p.weight_category_id = w._id where p._id = " + id + ";", null);
         Product pr = null;

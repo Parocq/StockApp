@@ -1,7 +1,9 @@
 package com.german.stockapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +17,8 @@ import com.german.stockapp.dao.DAOProduct;
 import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Location;
 import com.german.stockapp.entity.Product;
+
+import java.util.ArrayList;
 
 public class AddingProduct extends AppCompatActivity {
 
@@ -197,7 +201,8 @@ public class AddingProduct extends AppCompatActivity {
 
         final EditText editText0, editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
 
-        int id;
+        int id=0;
+        int weight_categoty_id=0, locCheck=0;
 
         DBHelper dbHelper = new DBHelper(this);// копируем экземпляр для чтения и редактирования
         db = dbHelper.getWritableDatabase();//
@@ -213,17 +218,133 @@ public class AddingProduct extends AppCompatActivity {
         editText7 = findViewById(R.id.editText7);
         editText8 = findViewById(R.id.editText8);
 
-        Location location = new Location(Integer.parseInt(editText6.getText().toString()),
-                Integer.parseInt(editText7.getText().toString()),Integer.parseInt(editText8.getText().toString()));
+        String WK_name = editText5.getText().toString();
+        if(WK_name.equals("Лёгкий")){
+            weight_categoty_id = 1;
+        } else if (WK_name.equals("Легкий")){
+            weight_categoty_id = 1;
+        } else if (WK_name.equals("Средний")) {
+            weight_categoty_id = 2;
+        } else if (WK_name.equals("Тяжелый")) {
+            weight_categoty_id = 3;
+        } else {
+            AlertDialog.Builder noWC = new AlertDialog.Builder(AddingProduct.this);
+            noWC.setMessage("Введите существующую весовую категорию:" +
+                    "1)Лёгкий" +
+                    "2)Средний" +
+                    "3)Тяжёлый")
+                    .setCancelable(false)
+                    .setCancelable(false)
+                    .setNegativeButton("ОК",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }});
+
+            AlertDialog alert = noWC.create();
+            alert.setTitle("Ошибка заполнения");
+            alert.show();
+            editText5.setText("0");
+        }
+
+        int line = Integer.parseInt(editText6.getText().toString());
+        int rack = Integer.parseInt(editText7.getText().toString());
+        int shelf = Integer.parseInt(editText8.getText().toString());
         DAOLocation daoLocation = new DAOLocation(db);
+        ArrayList<Location> locationList = daoLocation.selectAll();
 
-        id = daoLocation.addLocation(location);
+        for (int i = 0; i < locationList.size(); i++) {
+            if (locationList.get(i).getLine()== line &&
+                    locationList.get(i).getRack() == rack &&
+                    locationList.get(i).getShelf() == shelf)
+            {
+                id = locationList.get(i).getId();
+                break;
+            } else {
+                locCheck = 1;
+            }
+        }
+        if (locCheck == 1){
+            Location location = new Location(line,rack,shelf);
+            id = daoLocation.addLocation(location);
+        }
 
-        Product product = new Product(editText0.getText().toString(), editText1.getText().toString(),
-                Integer.parseInt(editText2.getText().toString()),Integer.parseInt(editText3.getText().toString()),
-                editText4.getText().toString(),id, Integer.parseInt(editText5.getText().toString()));
+        if (editText2.getText().toString().isEmpty()){
+            editText2.setText("0");
+        }
 
-        DAOProduct daoProduct = new DAOProduct(db);
-        daoProduct.AddProduct(product);
+        if (editText3.getText().toString().isEmpty()){
+            editText3.setText("0");
+        }
+
+        if (editText6.getText().toString().isEmpty()){
+            editText6.setText("0");
+        }
+
+        if (editText7.getText().toString().isEmpty()){
+            editText7.setText("0");
+        }
+
+        if (editText8.getText().toString().isEmpty()){
+            editText8.setText("0");
+        }
+
+        if (editText0.getText().toString().isEmpty() || editText1.getText().toString().isEmpty() ||
+                Integer.parseInt(editText2.getText().toString()) == 0 ||
+                Integer.parseInt(editText3.getText().toString()) == 0 ||
+                editText4.getText().toString().isEmpty() ||
+                Integer.parseInt(editText6.getText().toString()) == 0 ||
+                Integer.parseInt(editText7.getText().toString()) == 0 ||
+                Integer.parseInt(editText8.getText().toString()) == 0)
+        {
+            AlertDialog.Builder retry = new AlertDialog.Builder(AddingProduct.this);
+            retry.setMessage("Проверьте правильность введенных данных.")
+                    .setCancelable(false)
+                    .setCancelable(false)
+                    .setNegativeButton("ОК",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }});
+            AlertDialog alert = retry.create();
+            alert.setTitle("Ошибка заполнения");
+            alert.show();
+
+            if (Integer.parseInt(editText2.getText().toString()) == 0){
+                editText2.setText("");
+            }
+            if (Integer.parseInt(editText3.getText().toString()) == 0){
+                editText3.setText("");
+            }
+            if (Integer.parseInt(editText6.getText().toString()) == 0){
+                editText6.setText("");
+            }
+            if (Integer.parseInt(editText7.getText().toString()) == 0){
+                editText7.setText("");
+            }
+            if (Integer.parseInt(editText8.getText().toString()) == 0){
+                editText8.setText("");
+            }
+
+        } else {
+            Product product = new Product(editText0.getText().toString(), editText1.getText().toString(),
+                    Integer.parseInt(editText2.getText().toString()),Integer.parseInt(editText3.getText().toString()),
+                    editText4.getText().toString(),id, weight_categoty_id);
+            DAOProduct daoProduct = new DAOProduct(db);
+            daoProduct.AddProduct(product);
+
+            AlertDialog.Builder retry = new AlertDialog.Builder(AddingProduct.this);
+            retry.setMessage("Товар добавлен в базу данных.")
+                    .setCancelable(false)
+                    .setCancelable(false)
+                    .setNegativeButton("ОК",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }});
+            AlertDialog alert = retry.create();
+            alert.setTitle("Успех!");
+            alert.show();
+        }
     }
 }

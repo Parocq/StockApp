@@ -61,7 +61,6 @@ public class DAOOperator {
     }
 
     public Operator selectWhere(int id) {
-
         Cursor cursor = db.rawQuery("SELECT o._id, o.operator_name, wd.days, ws.shift, a.login, a.pass from operator o\n" +
                 "INNER JOIN work_days wd on wd._id=o.work_days_id INNER JOIN work_shift ws ON\n" +
                 "ws._id=o.work_shift_id INNER JOIN authorization a on a.operator_id = o._id where o._id = " + id + ";", null);
@@ -88,6 +87,29 @@ public class DAOOperator {
             cursor.close();
         }
         return op;
+    }
 
+    public int addOperator(Operator operator) {
+        db.execSQL("insert INTO operator(operator_name,work_days_id,work_shift_id)" +
+                "VALUES (\"" + operator.getOperatorName() + "\",\"" +
+                        operator.getWorkDaysId() + "\",\"" +
+                        operator.getWorkShiftId() + "\")");
+
+        Cursor cursor = db.rawQuery("SELECT max(_id) FROM operator", null);
+        cursor.moveToFirst();
+        int id = cursor.getInt(0);
+        cursor.close();
+        return id;
+    }
+
+//    CREATE TABLE operator(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+//            "operator_name TEXT," +
+//            "work_days_id INTEGER," +
+//            "work_shift_id INTEGER," +
+
+    public void redactOperator (Operator operator, int id) {
+        db.execSQL("UPDATE operator SET operator_name = \"" + operator.getOperatorName() + "\"," +
+                "work_days_id = \"" + operator.getWorkDaysId() + "\"," +
+                "work_shift_id = \"" + operator.getWorkShiftId() + "\"where _id = \"" + id + "\";\"");
     }
 }

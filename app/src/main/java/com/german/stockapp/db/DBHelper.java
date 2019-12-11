@@ -97,9 +97,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Roles data
         DAORoles daoRoles = new DAORoles(db);
-        daoRoles.insert(new Roles(1, "Director"));
-        daoRoles.insert(new Roles(2, "Manager"));
-        daoRoles.insert(new Roles(3, "Operator"));
+        daoRoles.insert(new Roles(1, "Директор"));
+        daoRoles.insert(new Roles(2, "Мэнеджер"));
+        daoRoles.insert(new Roles(3, "Оператор"));
 
         // Location data
         DAOLocation daoLocation = new DAOLocation(db);
@@ -130,17 +130,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Authorization data
         DAOAuthorization daoAuthorization = new DAOAuthorization(db);
-        daoAuthorization.insert(new Authorization("operatorMisha@sklad.by", "qwerty1", 3, 1));
+        daoAuthorization.insert(new Authorization("операторМиша", "паролъ", 3, 1));
         daoAuthorization.insert(new Authorization("SuperGruschik@sklad.by", "qwerty2", 3, 2));
         daoAuthorization.insert(new Authorization("IloveSlonov@sklad.by", "qwerty3", 3, 3));
         daoAuthorization.insert(new Authorization("VladIs12@sklad.by", "qwerty4", 3, 4));
         daoAuthorization.insert(new Authorization("ImOkay002@sklad.by", "qwerty5", 3, 5));
         daoAuthorization.insert(new Authorization("iKILLyouDONT@sklad.by", "qwerty6", 3, 6));
-        daoAuthorization.insert(new Authorization("login", "pass", 3, 7));
+        daoAuthorization.insert(new Authorization("логин", "пароль", 3, 7));
 
-        daoAuthorization.insert(new Authorization("neHost", "hardpass", 1));//поменял местами ID роли
+        daoAuthorization.insert(new Authorization("админ", "главный", 1));//поменял местами ID роли
         daoAuthorization.insert(new Authorization("SomeBodyOnesToldME@sklad.by", "HereWeH0V", 2));//относительно MySQL, не забудь
-        daoAuthorization.insert(new Authorization("ReachBOYZ@skald.by", "TryToHack007", 2));//заменить записку
+        daoAuthorization.insert(new Authorization("мэн", "еджер", 2));//заменить записку
 
         // Operators data
         DAOOperator daoOperator = new DAOOperator(db);

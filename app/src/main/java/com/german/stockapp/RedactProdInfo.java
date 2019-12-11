@@ -304,10 +304,25 @@ public class RedactProdInfo extends AppCompatActivity{
             editText3.setText("0");
         }
 
+        if (editText6.getText().toString().isEmpty()){
+            editText6.setText("0");
+        }
+
+        if (editText7.getText().toString().isEmpty()){
+            editText7.setText("0");
+        }
+
+        if (editText8.getText().toString().isEmpty()){
+            editText8.setText("0");
+        }
+
         if (editText0.getText().toString().isEmpty() || editText1.getText().toString().isEmpty() ||
                 Integer.parseInt(editText2.getText().toString()) == 0 ||
                 Integer.parseInt(editText3.getText().toString()) == 0 ||
-                editText4.getText().toString().isEmpty() || weight_categoty_id == 0)
+                editText4.getText().toString().isEmpty() ||
+                Integer.parseInt(editText6.getText().toString()) == 0 ||
+                Integer.parseInt(editText7.getText().toString()) == 0 ||
+                Integer.parseInt(editText8.getText().toString()) == 0)
         {
             AlertDialog.Builder retry = new AlertDialog.Builder(RedactProdInfo.this);
             retry.setMessage("Проверьте правильность введенных данных.")
@@ -321,15 +336,45 @@ public class RedactProdInfo extends AppCompatActivity{
             AlertDialog alert = retry.create();
             alert.setTitle("Ошибка заполнения");
             alert.show();
+
+            if (Integer.parseInt(editText2.getText().toString()) == 0){
+                editText2.setText("");
+            }
+            if (Integer.parseInt(editText3.getText().toString()) == 0){
+                editText3.setText("");
+            }
+            if (Integer.parseInt(editText6.getText().toString()) == 0){
+                editText6.setText("");
+            }
+            if (Integer.parseInt(editText7.getText().toString()) == 0){
+                editText7.setText("");
+            }
+            if (Integer.parseInt(editText8.getText().toString()) == 0){
+                editText8.setText("");
+            }
+
         } else {
             Product product = new Product(editText0.getText().toString(), editText1.getText().toString(),
                     Integer.parseInt(editText2.getText().toString()),Integer.parseInt(editText3.getText().toString()),
                     editText4.getText().toString(),
                     location_id,// location_id
                     weight_categoty_id);//weight_category
-
             DAOProduct daoProduct = new DAOProduct(db);
-            daoProduct.redactProd(product, id);}
+            daoProduct.redactProd(product, id);
+
+            AlertDialog.Builder retry = new AlertDialog.Builder(RedactProdInfo.this);
+            retry.setMessage("Информация о товаре отредактирована.")
+                    .setCancelable(false)
+                    .setCancelable(false)
+                    .setNegativeButton("ОК",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }});
+            AlertDialog alert = retry.create();
+            alert.setTitle("Успех!");
+            alert.show();
+        }
 
     }
 }
