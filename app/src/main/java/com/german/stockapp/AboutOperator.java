@@ -35,7 +35,7 @@ public class AboutOperator extends AppCompatActivity {
         textViewOperatorName = findViewById(R.id.textViewOperatorName);
 
 
-//      /**/String OpId = Integer.toString(operator.getId());
+        String OpId = Integer.toString(operator.getId());
         textViewOpId.setText(Integer.toString(operator.getId()));
         textViewOperatorName.setText(operator.getOperatorName());
         textViewFO00.setText(operator.getWorkDays().getDays());
