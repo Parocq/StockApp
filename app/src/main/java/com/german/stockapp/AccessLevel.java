@@ -49,12 +49,14 @@ public class AccessLevel extends AppCompatActivity {
 
     public void onProductsCatagol(View view) {
         Intent intent = new Intent(this, ProductsCatagol.class);// Переход на другую активность
+        intent.putExtra("level", AccessLvlOfProf);
         startActivity(intent);
 
     }
 
     public void onOperatorsCatalog(View view) {
         Intent intent = new Intent(this, OperatorsCatalog.class);// Переход на другую активность
+        intent.putExtra("level", AccessLvlOfProf);
         startActivity(intent);
     }
 }

@@ -193,13 +193,17 @@ public class RedactOperInfo extends AppCompatActivity {
             alert.setTitle("Ошибка ввода");
             alert.show();
         }
+        int wd_check = 0;
         for (int i=0; i<workdaysList.size();i++){
             if (workdaysList.get(i).getDays().equals(wd)){
                 wd_id = workdaysList.get(i).getId();
             } else {
-                WorkDays new_days = new WorkDays(wd);
-                wd_id = workDays.addWD(new_days);
+                wd_check = 1;
             }
+        }
+        if (wd_check==1){
+            WorkDays new_days = new WorkDays(wd);
+            wd_id = workDays.addWD(new_days);
         }
 
         int ws_id = 0;
@@ -207,11 +211,11 @@ public class RedactOperInfo extends AppCompatActivity {
         DAOWorkShift workShift = new DAOWorkShift(db);
         ArrayList<WorkShift> workshiftList = workShift.selectWS();
         for (int i=0; i<workshiftList.size();i++){
-            if (workshiftList.get(i).getShift().equals(editText2.getText())){
+            if (workshiftList.get(i).getShift().equals(ws)){
                 ws_id = workshiftList.get(i).getId();
             }
         }
-        if (wd_id == 0) {
+        if (ws_id == 0) {
             AlertDialog.Builder noWS = new AlertDialog.Builder(RedactOperInfo.this);
             noWS.setMessage("Введите существующую рабочую смену:" +
                     "1)Первая" +
@@ -232,14 +236,6 @@ public class RedactOperInfo extends AppCompatActivity {
             ws = editText2.getText().toString();
         }
 
-
-        int operator_id=0;
-        Operator operator = new Operator(fio, wd_id, ws_id);
-        operator_id = daoOperator.addOperator(operator);
-
-
-        DAOAuthorization daoAuthorization = new DAOAuthorization(db);
-        ArrayList<Authorization> passList = daoAuthorization.selectLogPas();
         String login = editText3.getText().toString();
         String pass = editText4.getText().toString();
 
@@ -274,9 +270,13 @@ public class RedactOperInfo extends AppCompatActivity {
 //            alert.show();
 //        }
         else {
-            Authorization authorization = new Authorization(login, pass, operator_id);
-            daoAuthorization.redactAuthorization(authorization, id);
+            int operator_id;
+            Operator operator = new Operator(fio, wd_id, ws_id);
             daoOperator.redactOperator(operator, id);
+            DAOAuthorization daoAuthorization = new DAOAuthorization(db);
+            Authorization authorization = new Authorization(login, pass, id);
+            daoAuthorization.redactAuthorization(authorization, id);
+
 
             AlertDialog.Builder noWC = new AlertDialog.Builder(RedactOperInfo.this);
             noWC.setMessage("Информация об операторе успешно изменена.")

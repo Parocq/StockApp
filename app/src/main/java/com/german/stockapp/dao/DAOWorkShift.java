@@ -40,9 +40,7 @@ public class DAOWorkShift {
 
     public int addWS(WorkShift workShift) {
         db.execSQL("insert INTO work_shift(shift)" +
-                "VALUES (\"" + workShift.getShift() + "\"\"" +
-                "\"\"" +
-                "\")");
+                "VALUES (\"" + workShift.getShift() + "\")");
         Cursor cursor = db.rawQuery("SELECT max(_id) FROM work_shift", null);
         cursor.moveToFirst();
         int id = cursor.getInt(0);

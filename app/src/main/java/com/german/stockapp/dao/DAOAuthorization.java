@@ -72,7 +72,8 @@ public class DAOAuthorization {
         public void addAuthorization(Authorization authorization) {
                 db.execSQL("insert INTO authorization(login,pass,roles_id,operator_id)" +
                         "VALUES (\"" + authorization.getLogin() + "\",\"" +
-                        authorization.getPass() + "\", 1,\"" +
+                        authorization.getPass() + "\",\"" +
+                        authorization.getRoles_id() + "\",\"" +
                         authorization.getOperator_id() + "\")");
 //                Cursor cursor = db.rawQuery("SELECT max(_id) FROM authorization", null);
 //                cursor.moveToFirst();

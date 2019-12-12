@@ -173,14 +173,17 @@ public class AddOperator extends AppCompatActivity {
             alert.setTitle("Ошибка ввода");
             alert.show();
         }
+        int wd_check = 0;
         for (int i=0; i<workdaysList.size();i++){
-            if (workdaysList.get(i).getDays().equals(wd)){
+            if (workdaysList.get(i).getDays().equals(editText1.getText())){
                 wd_id = workdaysList.get(i).getId();
             } else {
-                WorkDays new_days = new WorkDays(wd);
-                wd_id = workDays.addWD(new_days);
-                break;
+                wd_check = 1;
             }
+        }
+        if (wd_check==1){
+            WorkDays new_days = new WorkDays(wd);
+            wd_id = workDays.addWD(new_days);
         }
 
         int ws_id = 0;
@@ -266,7 +269,7 @@ public class AddOperator extends AppCompatActivity {
             DAOOperator daoOperator = new DAOOperator(db);
             Operator operator = new Operator(fio, wd_id, ws_id);
             operator_id = daoOperator.addOperator(operator);
-            Authorization authorization = new Authorization(login, pass, operator_id);
+            Authorization authorization = new Authorization(login, pass,3, operator_id);
             daoAuthorization.addAuthorization(authorization);
             AlertDialog.Builder added = new AlertDialog.Builder(AddOperator.this);
             added.setMessage("Оператор успешно добавлен")

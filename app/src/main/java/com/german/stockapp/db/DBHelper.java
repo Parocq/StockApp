@@ -138,11 +138,11 @@ public class DBHelper extends SQLiteOpenHelper {
         daoAuthorization.insert(new Authorization("VladIs12@sklad.by", "qwerty4", 3, 4));
         daoAuthorization.insert(new Authorization("ImOkay002@sklad.by", "qwerty5", 3, 5));
         daoAuthorization.insert(new Authorization("iKILLyouDONT@sklad.by", "qwerty6", 3, 6));
-        daoAuthorization.insert(new Authorization("логин", "пароль", 3, 7));
+        daoAuthorization.insert(new Authorization("доступ", "оператора", 3, 7));
 
-        daoAuthorization.insert(new Authorization("админ", "главный", 1));//поменял местами ID роли
+        daoAuthorization.insert(new Authorization("доступ", "администратора", 1));//поменял местами ID роли
         daoAuthorization.insert(new Authorization("SomeBodyOnesToldME@sklad.by", "HereWeH0V", 2));//относительно MySQL, не забудь
-        daoAuthorization.insert(new Authorization("мэн", "еджер", 2));//заменить записку
+        daoAuthorization.insert(new Authorization("доступ", "менеджера", 2));//заменить записку
 
         // Operators data
         DAOOperator daoOperator = new DAOOperator(db);
@@ -152,6 +152,7 @@ public class DBHelper extends SQLiteOpenHelper {
         daoOperator.insert(new Operator("Sania Starostil", 4, 1));
         daoOperator.insert(new Operator("Vasya Dotsky", 2, 2));
         daoOperator.insert(new Operator("Kirill Tereshen", 1, 2));
+        daoOperator.insert(new Operator("Тестовый Аккаун", 1, 2));
 
         // Products data
         DAOProduct daoProduct = new DAOProduct(db);

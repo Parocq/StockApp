@@ -41,9 +41,7 @@ public class DAOWorkDays {
 
     public int addWD(WorkDays workDay) {
         db.execSQL("insert INTO work_days(days)" +
-                "VALUES (\"" + workDay.getDays() + "\"\"" +
-                 "\"\"" +
-                 "\")");
+                "VALUES (\"" + workDay.getDays() +"\")");
         Cursor cursor = db.rawQuery("SELECT max(_id) FROM work_days", null);
         cursor.moveToFirst();
         int id = cursor.getInt(0);

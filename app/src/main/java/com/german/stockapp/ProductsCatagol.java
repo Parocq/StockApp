@@ -24,7 +24,7 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
     private ArrayAdapter<String> adapter;
     private ListView listView;
     private List<Product> list;
-
+    private int AccessLvlOfProf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,14 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
 
         db = MainActivity.db;
         DAOProduct product = new DAOProduct(db);
+
+        Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
+        AccessLvlOfProf = bundle.getInt("level");
+
+        if (AccessLvlOfProf == 3){
+            (findViewById(R.id.AddNewProduct)).setEnabled(false);
+            (findViewById(R.id.AddNewProduct)).setVisibility(View.INVISIBLE);
+        }
 
         list = product.selectTitle();
         List<String> productsTitles = new ArrayList<>();
@@ -87,6 +95,7 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
 
         Intent intent = new Intent(this, AboutProd.class);// Переход на другую активность
         intent.putExtra("id_product", list.get(position).getId());
+        intent.putExtra("level", AccessLvlOfProf);
         startActivity(intent);
     }
 

@@ -13,6 +13,7 @@ import com.german.stockapp.entity.Operator;
 public class AboutOperator extends AppCompatActivity {
 
     int id;
+    private int AccessLvlOfProf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,12 @@ public class AboutOperator extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
         id = bundle.getInt("id");
-
+        AccessLvlOfProf = bundle.getInt("level");
+        if (AccessLvlOfProf == 2){
+            (findViewById(R.id.toChangeOperator)).setEnabled(false);
+            (findViewById(R.id.toChangeOperator)).setVisibility(View.INVISIBLE);
+        }
+        
         DAOOperator daoOperator = new DAOOperator(MainActivity.db);
         Operator operator =  daoOperator.selectWhere(id);
 
@@ -35,7 +41,6 @@ public class AboutOperator extends AppCompatActivity {
         textViewOperatorName = findViewById(R.id.textViewOperatorName);
 
 
-        String OpId = Integer.toString(operator.getId());
         textViewOpId.setText(Integer.toString(operator.getId()));
         textViewOperatorName.setText(operator.getOperatorName());
         textViewFO00.setText(operator.getWorkDays().getDays());

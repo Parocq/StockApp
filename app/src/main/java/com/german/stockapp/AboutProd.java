@@ -16,6 +16,7 @@ public class AboutProd extends AppCompatActivity {
 
     int id;
     SQLiteDatabase db;
+    private int AccessLvlOfProf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,14 @@ public class AboutProd extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
         id = bundle.getInt("id_product");
+        AccessLvlOfProf = bundle.getInt("level");
+
+        if (AccessLvlOfProf == 3){
+            (findViewById(R.id.buttonDelProd)).setEnabled(false);
+            (findViewById(R.id.buttonDelProd)).setVisibility(View.INVISIBLE);
+            (findViewById(R.id.Submit)).setEnabled(false);
+            (findViewById(R.id.Submit)).setVisibility(View.INVISIBLE);
+        }
 
         DAOProduct daoProduct = new DAOProduct(MainActivity.db);
         Product product =  daoProduct.selectWhere(id);

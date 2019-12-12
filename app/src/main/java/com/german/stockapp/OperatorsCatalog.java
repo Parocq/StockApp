@@ -23,12 +23,20 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
     private List<Operator> list;
     private ArrayAdapter<String> adapter;
     private ListView listView;
-
+    private int AccessLvlOfProf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operators_catalog);
+
+        Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
+        AccessLvlOfProf = bundle.getInt("level");
+        if (AccessLvlOfProf == 2){
+            (findViewById(R.id.CreateOperatorAcc)).setEnabled(false);
+            (findViewById(R.id.CreateOperatorAcc)).setVisibility(View.INVISIBLE);
+        }
+
 
         db = MainActivity.db;
         DAOOperator operator = new DAOOperator(db);
@@ -78,7 +86,7 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Intent intent = new Intent(this, AboutOperator.class);// Переход на другую активность
-        //intent.putExtra("id_operator", );
+        intent.putExtra("level", AccessLvlOfProf);
         intent.putExtra("id", position + 1);
         startActivity(intent);
     }
