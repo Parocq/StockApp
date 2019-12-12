@@ -16,6 +16,7 @@ import com.german.stockapp.dao.DAOWorkDays;
 import com.german.stockapp.dao.DAOWorkShift;
 import com.german.stockapp.entity.Authorization;
 import com.german.stockapp.entity.Location;
+import com.german.stockapp.entity.MD5Util;
 import com.german.stockapp.entity.Operator;
 import com.german.stockapp.entity.Product;
 import com.german.stockapp.entity.Roles;
@@ -132,17 +133,28 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Authorization data
         DAOAuthorization daoAuthorization = new DAOAuthorization(db);
-        daoAuthorization.insert(new Authorization("операторМиша", "паролъ", 3, 1));
-        daoAuthorization.insert(new Authorization("SuperGruschik@sklad.by", "qwerty2", 3, 2));
-        daoAuthorization.insert(new Authorization("IloveSlonov@sklad.by", "qwerty3", 3, 3));
-        daoAuthorization.insert(new Authorization("VladIs12@sklad.by", "qwerty4", 3, 4));
-        daoAuthorization.insert(new Authorization("ImOkay002@sklad.by", "qwerty5", 3, 5));
-        daoAuthorization.insert(new Authorization("iKILLyouDONT@sklad.by", "qwerty6", 3, 6));
-        daoAuthorization.insert(new Authorization("доступ", "оператора", 3, 7));
+        String Q,W,E,R,T,Y,U,I,O,P;
+        Q = MD5Util.md5Custom("операторМиша");
+        W = MD5Util.md5Custom("qwerty2");
+        E = MD5Util.md5Custom("qwerty3");
+        R = MD5Util.md5Custom("qwerty4");
+        T = MD5Util.md5Custom("qwerty5");
+        Y = MD5Util.md5Custom("qwerty6");
+        U = MD5Util.md5Custom("оператора");
+        I = MD5Util.md5Custom("администратора");
+        O = MD5Util.md5Custom("HereWeH0V");
+        P = MD5Util.md5Custom("менеджера");
+        daoAuthorization.insert(new Authorization("операторМиша", Q, 3, 1));
+        daoAuthorization.insert(new Authorization("SuperGruschik@sklad.by", W, 3, 2));
+        daoAuthorization.insert(new Authorization("IloveSlonov@sklad.by", E, 3, 3));
+        daoAuthorization.insert(new Authorization("VladIs12@sklad.by", R, 3, 4));
+        daoAuthorization.insert(new Authorization("ImOkay002@sklad.by", T, 3, 5));
+        daoAuthorization.insert(new Authorization("iKILLyouDONT@sklad.by",Y, 3, 6));
+        daoAuthorization.insert(new Authorization("доступ", U, 3, 7));
 
-        daoAuthorization.insert(new Authorization("доступ", "администратора", 1));//поменял местами ID роли
-        daoAuthorization.insert(new Authorization("SomeBodyOnesToldME@sklad.by", "HereWeH0V", 2));//относительно MySQL, не забудь
-        daoAuthorization.insert(new Authorization("доступ", "менеджера", 2));//заменить записку
+        daoAuthorization.insert(new Authorization("доступ", I, 1));//поменял местами ID роли
+        daoAuthorization.insert(new Authorization("SomeBodyOnesToldME@sklad.by", O, 2));//относительно MySQL, не забудь
+        daoAuthorization.insert(new Authorization("доступ", P, 2));//заменить записку
 
         // Operators data
         DAOOperator daoOperator = new DAOOperator(db);

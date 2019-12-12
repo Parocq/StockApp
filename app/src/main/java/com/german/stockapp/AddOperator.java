@@ -18,6 +18,7 @@ import com.german.stockapp.dao.DAOWorkDays;
 import com.german.stockapp.dao.DAOWorkShift;
 import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Authorization;
+import com.german.stockapp.entity.MD5Util;
 import com.german.stockapp.entity.Operator;
 import com.german.stockapp.entity.WorkDays;
 import com.german.stockapp.entity.WorkShift;
@@ -224,6 +225,7 @@ public class AddOperator extends AppCompatActivity {
         int loginCheck= 0;
         String login = editText3.getText().toString();
         String pass = editText4.getText().toString();
+        String passMD5 = MD5Util.md5Custom(pass);
         for (int i=0; i<passList.size();i++){
             if (passList.get(i).getLogin().equals(login)) {
                 loginCheck = 1;
@@ -269,7 +271,7 @@ public class AddOperator extends AppCompatActivity {
             DAOOperator daoOperator = new DAOOperator(db);
             Operator operator = new Operator(fio, wd_id, ws_id);
             operator_id = daoOperator.addOperator(operator);
-            Authorization authorization = new Authorization(login, pass,3, operator_id);
+            Authorization authorization = new Authorization(login, passMD5,3, operator_id);
             daoAuthorization.addAuthorization(authorization);
             AlertDialog.Builder added = new AlertDialog.Builder(AddOperator.this);
             added.setMessage("Оператор успешно добавлен")

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Authorization;
 import com.german.stockapp.dao.DAOAuthorization;
+import com.german.stockapp.entity.MD5Util;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public void onAuthorizationClick(View view) {
         String textLogin = editTextLogin.getText().toString();// В переменные записывваем значения из TextEdit
         String textPassword = editText1Password.getText().toString();//
+        String textPasswordMD5 = MD5Util.md5Custom(textPassword);
 
         DBHelper dbHelper = new DBHelper(this);// копируем экземпляр для чтения и редактирования
         db = dbHelper.getWritableDatabase();//
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             textIncorrect = (TextView) findViewById(R.id.textIncorrect);
 
             for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals(textPassword)) {
+                if (list.get(i).getLogin().equals(textLogin) && list.get(i).getPass().equals(textPasswordMD5)) {
                     AccessLvlOfProf = list.get(i).getRoles_id();// получаем роль
                     Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
                     intent.putExtra("level", AccessLvlOfProf);

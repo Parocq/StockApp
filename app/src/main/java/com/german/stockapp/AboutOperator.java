@@ -29,7 +29,7 @@ public class AboutOperator extends AppCompatActivity {
             (findViewById(R.id.toChangeOperator)).setEnabled(false);
             (findViewById(R.id.toChangeOperator)).setVisibility(View.INVISIBLE);
         }
-        
+
         DAOOperator daoOperator = new DAOOperator(MainActivity.db);
         Operator operator =  daoOperator.selectWhere(id);
 

@@ -19,6 +19,7 @@ import com.german.stockapp.dao.DAOWorkDays;
 import com.german.stockapp.dao.DAOWorkShift;
 import com.german.stockapp.db.DBHelper;
 import com.german.stockapp.entity.Authorization;
+import com.german.stockapp.entity.MD5Util;
 import com.german.stockapp.entity.Operator;
 import com.german.stockapp.entity.WorkDays;
 import com.german.stockapp.entity.WorkShift;
@@ -238,7 +239,7 @@ public class RedactOperInfo extends AppCompatActivity {
 
         String login = editText3.getText().toString();
         String pass = editText4.getText().toString();
-
+        String passMD5 = MD5Util.md5Custom(pass);
 
         if (fio.isEmpty() || wd.isEmpty() || ws.isEmpty() || login.isEmpty() || pass.isEmpty()) {
             AlertDialog.Builder noWC = new AlertDialog.Builder(RedactOperInfo.this);
@@ -274,7 +275,7 @@ public class RedactOperInfo extends AppCompatActivity {
             Operator operator = new Operator(fio, wd_id, ws_id);
             daoOperator.redactOperator(operator, id);
             DAOAuthorization daoAuthorization = new DAOAuthorization(db);
-            Authorization authorization = new Authorization(login, pass, id);
+            Authorization authorization = new Authorization(login, passMD5, id);
             daoAuthorization.redactAuthorization(authorization, id);
 
 
