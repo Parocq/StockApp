@@ -87,6 +87,8 @@ public class DBHelper extends SQLiteOpenHelper {
         DAOWorkShift daoWorkShift = new DAOWorkShift(db);
         daoWorkShift.insert(new WorkShift("Первая"));
         daoWorkShift.insert(new WorkShift("Вторая"));
+        daoWorkShift.insert(new WorkShift("Полная"));
+        daoWorkShift.insert(new WorkShift("Ночная"));
 
         //Work_days data
         DAOWorkDays daoWorkDays = new DAOWorkDays(db);

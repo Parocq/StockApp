@@ -179,6 +179,7 @@ public class AddOperator extends AppCompatActivity {
             } else {
                 WorkDays new_days = new WorkDays(wd);
                 wd_id = workDays.addWD(new_days);
+                break;
             }
         }
 
@@ -187,16 +188,18 @@ public class AddOperator extends AppCompatActivity {
         DAOWorkShift workShift = new DAOWorkShift(db);
         ArrayList<WorkShift> workshiftList = workShift.selectWS();
         for (int i=0; i<workshiftList.size();i++){
-            if (workshiftList.get(i).getShift().equals(editText2.getText())){
+            if (workshiftList.get(i).getShift().equals(editText2.getText().toString())){
                 ws_id = workshiftList.get(i).getId();
+                break;
             }
             }
-        if (wd_id == 0) {
+        if (ws_id == 0) {
             AlertDialog.Builder noWS = new AlertDialog.Builder(AddOperator.this);
             noWS.setMessage("Введите существующую рабочую смену:" +
                     "1)Первая" +
                     "2)Вторая" +
-                    "3)Ночная")
+                    "3)Ночная" +
+                    "3)Полная")
                     .setCancelable(false)
                     .setNegativeButton("ОК",
                             new DialogInterface.OnClickListener() {
@@ -213,19 +216,17 @@ public class AddOperator extends AppCompatActivity {
         }
 
 
-        int operator_id=0;
-        DAOOperator daoOperator = new DAOOperator(db);
-        Operator operator = new Operator(fio, wd_id, ws_id);
-        operator_id = daoOperator.addOperator(operator);
-
-
         DAOAuthorization daoAuthorization = new DAOAuthorization(db);
         ArrayList<Authorization> passList = daoAuthorization.selectLogPas();
         int loginCheck= 0;
         String login = editText3.getText().toString();
         String pass = editText4.getText().toString();
         for (int i=0; i<passList.size();i++){
-            if (passList.get(i).getLogin().equals(login)){
+            if (passList.get(i).getLogin().equals(login)) {
+                loginCheck = 1;
+                break;
+            }
+            if(loginCheck == 1){
                 AlertDialog.Builder noWC = new AlertDialog.Builder(AddOperator.this);
                 noWC.setMessage("Данный логин уже занят!")
                         .setCancelable(false)
@@ -238,13 +239,15 @@ public class AddOperator extends AppCompatActivity {
                 AlertDialog alert = noWC.create();
                 alert.setTitle("Ошибка ввода");
                 alert.show();
-                loginCheck = 1;
                 editText3.setText("");
                 editText4.setText("");
+                login = editText3.getText().toString();
+                pass = editText4.getText().toString();
                 break;
             }
         }
-        if (fio.isEmpty() || wd.isEmpty() || ws.isEmpty() || login.isEmpty() || pass.isEmpty() || loginCheck==1) {
+
+        if (fio.isEmpty() || wd.isEmpty() || ws.isEmpty() || login.isEmpty() || pass.isEmpty() || login.isEmpty()) {
             AlertDialog.Builder noWC = new AlertDialog.Builder(AddOperator.this);
             noWC.setMessage("Вам необходимо заполнить все поля.")
                     .setCancelable(false)
@@ -259,10 +262,14 @@ public class AddOperator extends AppCompatActivity {
             alert.show();
         }
         else {
+            int operator_id;
+            DAOOperator daoOperator = new DAOOperator(db);
+            Operator operator = new Operator(fio, wd_id, ws_id);
+            operator_id = daoOperator.addOperator(operator);
             Authorization authorization = new Authorization(login, pass, operator_id);
             daoAuthorization.addAuthorization(authorization);
-            AlertDialog.Builder noWC = new AlertDialog.Builder(AddOperator.this);
-            noWC.setMessage("Оператор успешно добавлен")
+            AlertDialog.Builder added = new AlertDialog.Builder(AddOperator.this);
+            added.setMessage("Оператор успешно добавлен")
                     .setCancelable(false)
                     .setNegativeButton("ОК",
                             new DialogInterface.OnClickListener() {
@@ -270,7 +277,7 @@ public class AddOperator extends AppCompatActivity {
                                     dialog.cancel();
                                 }});
 
-            AlertDialog alert = noWC.create();
+            AlertDialog alert = added.create();
             alert.show();
         }
     }

@@ -1,11 +1,11 @@
 package com.german.stockapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.german.stockapp.dao.DAOOperator;
 import com.german.stockapp.entity.Operator;
@@ -22,10 +22,10 @@ public class AboutOperator extends AppCompatActivity {
         TextView textViewOperatorName, textViewFO00, textViewFO01, textViewFO02, textViewFO03, textViewOpId;
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
-        id = bundle.getInt("id_operator");
+        id = bundle.getInt("id");
 
-        DAOOperator daoProduct = new DAOOperator(MainActivity.db);
-        Operator operator =  daoProduct.selectWhere(id);
+        DAOOperator daoOperator = new DAOOperator(MainActivity.db);
+        Operator operator =  daoOperator.selectWhere(id);
 
         textViewFO00 = findViewById(R.id.textViewFO00);
         textViewFO01 = findViewById(R.id.textViewFO01);
@@ -35,8 +35,8 @@ public class AboutOperator extends AppCompatActivity {
         textViewOperatorName = findViewById(R.id.textViewOperatorName);
 
 
-        String OpId = Integer.toString(operator.getId());
-        textViewOpId.setText (OpId);
+//      /**/String OpId = Integer.toString(operator.getId());
+        textViewOpId.setText(Integer.toString(operator.getId()));
         textViewOperatorName.setText(operator.getOperatorName());
         textViewFO00.setText(operator.getWorkDays().getDays());
         textViewFO01.setText(operator.getWorkShift().getShift());

@@ -19,7 +19,11 @@ import java.util.List;
 
 public class OperatorsCatalog extends AppCompatActivity implements ListView.OnItemClickListener {
 
-        SQLiteDatabase db;
+    SQLiteDatabase db;
+    private List<Operator> list;
+    private ArrayAdapter<String> adapter;
+    private ListView listView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +41,8 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
             operatorsNames.add(list.get(i).getOperatorName());
         }
 
-        ListView listView = findViewById(R.id.ListViewOperators);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operatorsNames);
+        listView = findViewById(R.id.ListViewOperators);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operatorsNames);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
         adapter.notifyDataSetChanged();// изменения при удалении и т.п.
@@ -51,7 +55,7 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
 
         DAOOperator operator = new DAOOperator(db);
 
-        List<Operator> list = operator.SelectFIO();
+        list = operator.SelectFIO();
 
         List<String> operatorsNames = new ArrayList<>();
 
@@ -59,8 +63,8 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
             operatorsNames.add(list.get(i).getOperatorName());
         }
 
-        ListView listView = findViewById(R.id.ListViewOperators);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operatorsNames);
+        listView = findViewById(R.id.ListViewOperators);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, operatorsNames);
         listView.setAdapter(adapter);
     }
 
@@ -74,14 +78,15 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         Intent intent = new Intent(this, AboutOperator.class);// Переход на другую активность
-        intent.putExtra("id_operator", position+1);
+        //intent.putExtra("id_operator", );
+        intent.putExtra("id", position + 1);
         startActivity(intent);
     }
 
-    public void ClearSearchField (View view) {
-            TextView editTextSearch = new TextView(this);
-            editTextSearch = (TextView) findViewById(R.id.editTextSearch);
-            editTextSearch.setText("");
+    public void ClearSearchField(View view) {
+        TextView editTextSearch = new TextView(this);
+        editTextSearch = (TextView) findViewById(R.id.editTextSearch);
+        editTextSearch.setText("");
     }
 
     public void buttonSearch(View view) {
