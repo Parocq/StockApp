@@ -16,8 +16,6 @@ public class MD5Util {
             messageDigest.update(st.getBytes());
             digest = messageDigest.digest();
         } catch (NoSuchAlgorithmException e) {
-            // тут можно обработать ошибку
-            // возникает она если в передаваемый алгоритм в getInstance(,,,) не существует
             e.printStackTrace();
         }
 
@@ -30,5 +28,4 @@ public class MD5Util {
 
         return md5Hex;
     }
-
 }

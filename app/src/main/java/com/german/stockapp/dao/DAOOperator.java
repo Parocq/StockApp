@@ -50,9 +50,9 @@ public class DAOOperator {
         Operator op;
         if (cursor.moveToFirst()) {
             do {
+                int id = cursor.getInt(0);
                 String title = cursor.getString(1);
-
-                op = new Operator(title);
+                op = new Operator(id, title);
                 list.add(op);
             } while (cursor.moveToNext());
             cursor.close();
@@ -89,6 +89,22 @@ public class DAOOperator {
         return op;
     }
 
+    public ArrayList<Operator> selectNameLike(String keyword) {
+        ArrayList<Operator> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select _id, operator_name from operator where operator_name like '%"+keyword+"%\';", null);
+        Operator op;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String operatorName = cursor.getString(1);
+                op = new Operator(id, operatorName);
+                list.add(op);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
     public int addOperator(Operator operator) {
         db.execSQL("insert INTO operator(operator_name,work_days_id,work_shift_id)" +
                 "VALUES (\"" + operator.getOperatorName() + "\",\"" +
@@ -102,10 +118,69 @@ public class DAOOperator {
         return id;
     }
 
-//    CREATE TABLE operator(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-//            "operator_name TEXT," +
-//            "work_days_id INTEGER," +
-//            "work_shift_id INTEGER," +
+    public ArrayList<Operator> sortByID1() {
+        ArrayList<Operator> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT _id, operator_name FROM operator ORDER BY operator._id ASC", null);
+        Operator op;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                op = new Operator(id, title);
+                list.add(op);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
+    public ArrayList<Operator> sortByID2() {
+        ArrayList<Operator> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT _id, operator_name FROM operator ORDER BY operator._id DESC", null);
+        Operator op;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                op = new Operator(id, title);
+                list.add(op);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
+    public ArrayList<Operator> sortByName1() {
+        ArrayList<Operator> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT main.operator._id, main.operator.operator_name FROM main.operator ORDER BY main.operator.operator_name ASC", null);
+        Operator op;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                op = new Operator(id, title);
+                list.add(op);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
+    public ArrayList<Operator> sortByName2() {
+        ArrayList<Operator> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT main.operator._id, main.operator.operator_name FROM main.operator ORDER BY main.operator.operator_name DESC", null);
+        Operator op;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                op = new Operator(id, title);
+                list.add(op);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
 
     public void redactOperator (Operator operator, int id) {
         db.execSQL("UPDATE operator SET operator_name = \"" + operator.getOperatorName() + "\"," +

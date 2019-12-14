@@ -64,14 +64,26 @@
 
     <Spinner
         android:id="@+id/spinnerSort"
-        android:layout_width="0dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ClearButton" />
+        app:layout_constraintTop_toBottomOf="@+id/ClearButton"
+        android:entries="@array/opList"/>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="onSortClick"
+        android:text="@string/sort"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spinnerSort"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSearch"
+        tools:ignore="NotSibling"></Button>
 
     <RelativeLayout
         android:layout_width="match_parent"

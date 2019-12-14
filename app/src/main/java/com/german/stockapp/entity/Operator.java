@@ -19,11 +19,9 @@ public class Operator {
         this.authorization = authorization;
     }
 
-    public Operator(int id, String operatorName, int workDaysId, int workShiftId) {
+    public Operator(int id, String operatorName) {
         this.id = id;
         this.operatorName = operatorName;
-        this.workDaysId = workDaysId;
-        this.workShiftId = workShiftId;
     }
 
     public  Operator(String operatorName, int workDaysId, int workShiftId) {
@@ -32,16 +30,6 @@ public class Operator {
         this.workShiftId = workShiftId;
     }
 
-    public Operator(int id, String operatorName, int workDaysId, int workShiftId, int autorizationId) {
-        this.id = id;
-        this.operatorName = operatorName;
-        this.workDaysId = workDaysId;
-        this.workShiftId = workShiftId;
-    }
-
-    public  Operator(String operatorName) {
-        this.operatorName = operatorName;
-    }
 
     public int getId() {
         return id;

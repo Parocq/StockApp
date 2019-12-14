@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.german.stockapp.dao.DAOProduct;
@@ -40,7 +41,7 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
         AccessLvlOfProf = bundle.getInt("level");
 
-        if (AccessLvlOfProf == 3){
+        if (AccessLvlOfProf == 3) {
             (findViewById(R.id.AddNewProduct)).setEnabled(false);
             (findViewById(R.id.AddNewProduct)).setVisibility(View.INVISIBLE);
         }
@@ -58,7 +59,6 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
         listView.setOnItemClickListener(this);
         adapter.notifyDataSetChanged();
     }
-
 
 
     public void buttonSearch(View view) {
@@ -122,5 +122,27 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
     }
 
     public void onSortClick(View view) {
+        DAOProduct daoProduct = new DAOProduct(db);
+        int selected;
+        Spinner spinner = findViewById(R.id.spinnerSort);
+        selected = Integer.valueOf(spinner.getSelectedItemPosition());
+        switch (selected) {
+            case 1:
+                list = daoProduct.sortByID1();
+            case 2:
+                list = daoProduct.sortByID2();
+            case 3:
+                list = daoProduct.sortByName1();
+            case 4:
+                list = daoProduct.sortByName2();
+        }
+        List<String> sortedProducts = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            sortedProducts.add(list.get(i).getTitle());
+        }
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sortedProducts);
+        listView.setAdapter(adapter);
     }
+
 }
+

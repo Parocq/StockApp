@@ -74,7 +74,7 @@ public class AboutProd extends AppCompatActivity {
         textViewF09 = findViewById(R.id.textViewF09);
         textViewF09.setText(shelf);
     }
-    
+
     public void onDelProdButClick(View view) {
         DBHelper dbHelper = new DBHelper(this);// копируем экземпляр для чтения и редактирования
         db = dbHelper.getWritableDatabase();//

@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.german.stockapp.dao.DAOOperator;
@@ -24,6 +26,7 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
     private ArrayAdapter<String> adapter;
     private ListView listView;
     private int AccessLvlOfProf;
+    int selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
 
         Bundle bundle = getIntent().getExtras();// для перехода между активностями сохраняет данные
         AccessLvlOfProf = bundle.getInt("level");
-        if (AccessLvlOfProf == 2){
+        if (AccessLvlOfProf == 2) {
             (findViewById(R.id.CreateOperatorAcc)).setEnabled(false);
             (findViewById(R.id.CreateOperatorAcc)).setVisibility(View.INVISIBLE);
         }
@@ -76,18 +79,26 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
         listView.setAdapter(adapter);
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-
+    public void buttonSearch(View view) {
+        EditText editTextSearchTxt;
+        String searchFor;
+        DAOOperator daoOperator = new DAOOperator(db);
+        editTextSearchTxt = findViewById(R.id.editTextSearch);
+        searchFor = editTextSearchTxt.getText().toString();
+        list = daoOperator.selectNameLike(searchFor);
+        List<String> searchedOperator = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            searchedOperator.add(list.get(i).getOperatorName());
+        }
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, searchedOperator);
+        listView.setAdapter(adapter);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
         Intent intent = new Intent(this, AboutOperator.class);// Переход на другую активность
         intent.putExtra("level", AccessLvlOfProf);
-        intent.putExtra("id", position + 1);
+        intent.putExtra("id", list.get(position).getId());
         startActivity(intent);
     }
 
@@ -97,11 +108,32 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
         editTextSearch.setText("");
     }
 
-    public void buttonSearch(View view) {
-    }
-
     public void onAddOpperClick(View view) {
         Intent intent = new Intent(this, AddOperator.class);
         startActivity(intent);
     }
-}
+
+    public void onSortClick(View view) {
+        DAOOperator daoOperator = new DAOOperator(db);
+
+        Spinner spinner = findViewById(R.id.spinnerSort);
+        selected = Integer.valueOf(spinner.getSelectedItemPosition());
+        switch (selected) {
+            case 1:
+                list = daoOperator.sortByID1();
+            case 2:
+                list = daoOperator.sortByID2();
+            case 3:
+                list = daoOperator.sortByName1();
+            case 4:
+                list = daoOperator.sortByName2();
+        }
+                List<String> sortedOperators = new ArrayList<>();
+                for (int i = 0; i < list.size(); i++) {
+                    sortedOperators.add(list.get(i).getOperatorName());
+                }
+                adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sortedOperators);
+                listView.setAdapter(adapter);
+        }
+    }
+

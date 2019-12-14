@@ -42,18 +42,18 @@ public class DAOProduct {
 
     }
 
-    public void redactProd (Product product, int id){
-        db.execSQL("UPDATE product SET title = \""+ product.getTitle() + "\"," +
+    public void redactProd(Product product, int id) {
+        db.execSQL("UPDATE product SET title = \"" + product.getTitle() + "\"," +
                 "date_of_delivery = \"" + product.getDate_of_delivery() + "\"," +
                 "operator_id = \"" + product.getOperator_id() + "\"," +
                 "amount = \"" + product.getAmount() + "\"," +
                 "implementation_period = \"" + product.getImplementation_period() + "\"," +
                 "weight_category_id = \"" + product.getWeightCategoryId() + "\"," +
-                "location_id = \"" + product.getLocationId()+"\"where _id = \"" + id + "\";\"");
+                "location_id = \"" + product.getLocationId() + "\"where _id = \"" + id + "\";\"");
     }
 
 
-    public void AddProduct(Product product){
+    public void AddProduct(Product product) {
         db.execSQL("insert INTO product(title, date_of_delivery, operator_id," +
                 " amount, implementation_period,location_id, weight_category_id)" +
                 "VALUES (\"" + product.getTitle() + "\",\"" +
@@ -85,7 +85,7 @@ public class DAOProduct {
 
     public ArrayList<Product> selectTitleLike(String keyword) {
         ArrayList<Product> list = new ArrayList<>();
-        Cursor cursor = db.rawQuery("select _id, title from product where title like '%"+keyword+"%\';", null);
+        Cursor cursor = db.rawQuery("select _id, title from product where title like '%" + keyword + "%\';", null);
         Product pr;
         if (cursor.moveToFirst()) {
             do {
@@ -100,8 +100,8 @@ public class DAOProduct {
         return list;
     }
 
-    public  void deleteByID (int id) {
-        db.execSQL("DELETE FROM product where _id="+ id +";");
+    public void deleteByID(int id) {
+        db.execSQL("DELETE FROM product where _id=" + id + ";");
     }
 
 
@@ -116,8 +116,8 @@ public class DAOProduct {
                 String date_of_delivery = cursor.getString(2);
                 int operator_id = cursor.getInt(3);
 
-                String operator_name =  cursor.getString(13);
-                Operator operator = new Operator(operator_name);
+                String operator_name = cursor.getString(13);
+                Operator operator = new Operator(_id, operator_name);
 
                 int amount = cursor.getInt(4);
                 String implementation_period = cursor.getString(5);
@@ -135,12 +135,76 @@ public class DAOProduct {
                 double wk_max_weight = cursor.getInt(19);
                 WeightCategory weightCategory = new WeightCategory(wk_title, wk_max_weight, wk_min_weight);
 
-                pr = new Product(_id, title,date_of_delivery,operator_id,amount,implementation_period, location_id, weight_category_id, location, weightCategory, operator);
+                pr = new Product(_id, title, date_of_delivery, operator_id, amount, implementation_period, location_id, weight_category_id, location, weightCategory, operator);
 
             } while (cursor.moveToNext());
             cursor.close();
         }
         return pr;
+    }
+
+    public ArrayList<Product> sortByName1() {
+        ArrayList<Product> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT _id, title FROM product ORDER BY title ASC", null);
+        Product pr;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                pr = new Product(id, title);
+                list.add(pr);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
+    public ArrayList<Product> sortByName2() {
+        ArrayList<Product> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT _id, title FROM product ORDER BY title DESC", null);
+        Product pr;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                pr = new Product(id, title);
+                list.add(pr);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
+    public ArrayList<Product> sortByID1() {
+        ArrayList<Product> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT _id, title FROM product ORDER BY _id ASC", null);
+        Product pr;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                pr = new Product(id, title);
+                list.add(pr);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
+    public ArrayList<Product> sortByID2() {
+        ArrayList<Product> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT _id, title FROM product ORDER BY _id DESC", null);
+        Product pr;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                pr = new Product(id, title);
+                list.add(pr);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
     }
 }
 
