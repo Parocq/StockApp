@@ -83,6 +83,23 @@ public class DAOProduct {
         return list;
     }
 
+    public ArrayList<Product> selectTitleLike(String keyword) {
+        ArrayList<Product> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select _id, title from product where title like '%"+keyword+"%\';", null);
+        Product pr;
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+
+                pr = new Product(id, title);
+                list.add(pr);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
     public  void deleteByID (int id) {
         db.execSQL("DELETE FROM product where _id="+ id +";");
     }

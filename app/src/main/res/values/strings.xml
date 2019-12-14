@@ -40,4 +40,5 @@
     <string name="RedOpInf">Измененить параметры аккаунта</string>
     <string name="CreateAccount">СОЗДАТЬ АККАУНТ</string>
     <string name="adddddd">Создать аккаунт</string>
+    <string name="sort">Сорт.</string>
 </resources>

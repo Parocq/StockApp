@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
     private ListView listView;
     private List<Product> list;
     private int AccessLvlOfProf;
+//    private String searchFor;
+//    private
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +56,30 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsTitles);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
-        adapter.notifyDataSetChanged();// изменения при удалении и т.п.
+        adapter.notifyDataSetChanged();
+    }
+
+
+
+    public void buttonSearch(View view) {
+        EditText editTextSearchTxt;
+        String searchFor;
+        DAOProduct daoProduct = new DAOProduct(db);
+        editTextSearchTxt = findViewById(R.id.editTextSearch);
+        searchFor = editTextSearchTxt.getText().toString();
+        list = daoProduct.selectTitleLike(searchFor);
+        List<String> productsSearched = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            productsSearched.add(list.get(i).getTitle());
+        }
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, productsSearched);
+        listView.setAdapter(adapter);
     }
 
     public void ClearSearchFild(View view) {
         TextView editTextSearch = new TextView(this);
         editTextSearch = (TextView) findViewById(R.id.editTextSearch);
         editTextSearch.setText("");
-    }
-
-    public void buttonSearch(View view) {
     }
 
     @Override
@@ -102,5 +119,8 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
     public void onAddProdClick(View view) {
         Intent intent = new Intent(this, AddingProduct.class);// Переход на другую активность
         startActivity(intent);
+    }
+
+    public void onSortClick(View view) {
     }
 }

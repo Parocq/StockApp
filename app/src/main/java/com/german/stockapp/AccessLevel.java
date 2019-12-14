@@ -42,6 +42,11 @@ public class AccessLevel extends AppCompatActivity {
 
     }
 
+    public void onBackPressed (){
+        super.onBackPressed();
+        finish();
+    }
+
     public void onUnClick(View view){
         Intent intent = new Intent(this, MainActivity.class);// Переход на другую активность
         startActivity(intent);

@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();// вернет экземпляр БД доступный для чтения и редактирования
     }
 
+    public void onBackPressed (){
+        super.onBackPressed();
+        finish();
+    }
+
 
     public void onAuthorizationClick(View view) {
         String textLogin = editTextLogin.getText().toString();// В переменные записывваем значения из TextEdit
@@ -61,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(this, AccessLevel.class);// Переход на другую активность
                     intent.putExtra("level", AccessLvlOfProf);
                     startActivity(intent);
+                    finish();
                 } else {
                     textIncorrect.setText("Login or password are incorrect");
                 }
