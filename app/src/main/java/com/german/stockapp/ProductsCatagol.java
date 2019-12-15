@@ -125,16 +125,20 @@ public class ProductsCatagol extends AppCompatActivity implements ListView.OnIte
         DAOProduct daoProduct = new DAOProduct(db);
         int selected;
         Spinner spinner = findViewById(R.id.spinnerSort);
-        selected = Integer.valueOf(spinner.getSelectedItemPosition());
+        selected = Integer.valueOf(spinner.getSelectedItemPosition())+1;
         switch (selected) {
             case 1:
                 list = daoProduct.sortByID1();
+                break;
             case 2:
                 list = daoProduct.sortByID2();
+                break;
             case 3:
                 list = daoProduct.sortByName1();
+                break;
             case 4:
                 list = daoProduct.sortByName2();
+                break;
         }
         List<String> sortedProducts = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {

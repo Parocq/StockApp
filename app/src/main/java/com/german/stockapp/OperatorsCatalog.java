@@ -117,16 +117,20 @@ public class OperatorsCatalog extends AppCompatActivity implements ListView.OnIt
         DAOOperator daoOperator = new DAOOperator(db);
 
         Spinner spinner = findViewById(R.id.spinnerSort);
-        selected = Integer.valueOf(spinner.getSelectedItemPosition());
+        selected = Integer.valueOf(spinner.getSelectedItemPosition())+1;
         switch (selected) {
             case 1:
                 list = daoOperator.sortByID1();
+                break;
             case 2:
                 list = daoOperator.sortByID2();
+                break;
             case 3:
                 list = daoOperator.sortByName1();
+                break;
             case 4:
                 list = daoOperator.sortByName2();
+                break;
         }
                 List<String> sortedOperators = new ArrayList<>();
                 for (int i = 0; i < list.size(); i++) {
