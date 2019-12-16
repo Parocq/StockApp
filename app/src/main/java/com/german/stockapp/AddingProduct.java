@@ -234,7 +234,6 @@ public class AddingProduct extends AppCompatActivity {
                     "2)Средний" +
                     "3)Тяжёлый")
                     .setCancelable(false)
-                    .setCancelable(false)
                     .setNegativeButton("ОК",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -244,7 +243,7 @@ public class AddingProduct extends AppCompatActivity {
             AlertDialog alert = noWC.create();
             alert.setTitle("Ошибка заполнения");
             alert.show();
-            editText5.setText("0");
+            weight_categoty_id = 0;
         }
 
         int line = Integer.parseInt(editText6.getText().toString());
@@ -277,6 +276,10 @@ public class AddingProduct extends AppCompatActivity {
             editText3.setText("0");
         }
 
+        if (weight_categoty_id == 0){
+            editText5.setText("0");
+        }
+
         if (editText6.getText().toString().isEmpty()){
             editText6.setText("0");
         }
@@ -293,6 +296,7 @@ public class AddingProduct extends AppCompatActivity {
                 Integer.parseInt(editText2.getText().toString()) == 0 ||
                 Integer.parseInt(editText3.getText().toString()) == 0 ||
                 editText4.getText().toString().isEmpty() ||
+                Integer.parseInt(editText5.getText().toString()) == 0 ||
                 Integer.parseInt(editText6.getText().toString()) == 0 ||
                 Integer.parseInt(editText7.getText().toString()) == 0 ||
                 Integer.parseInt(editText8.getText().toString()) == 0)
