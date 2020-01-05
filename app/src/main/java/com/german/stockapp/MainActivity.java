@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editTextLogin, editText1Password;// обозначаем что у нас будут использоваться поля ввода
+    EditText editTextLogin, editText1Password;
     static SQLiteDatabase db;
 
     int AccessLvlOfProf;
@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editTextLogin = findViewById(R.id.editTextLogin);//писваиваем переменным соответсвующие поля ввода
-        editText1Password = findViewById(R.id.editText1Password);//
+        editTextLogin = findViewById(R.id.editTextLogin);
+        editText1Password = findViewById(R.id.editText1Password);
 
-        DBHelper dbHelper = new DBHelper(this);   //
-        db = dbHelper.getWritableDatabase();// вернет экземпляр БД доступный для чтения и редактирования
+        DBHelper dbHelper = new DBHelper(this);
+        db = dbHelper.getWritableDatabase();
     }
 
     public void onBackPressed (){
@@ -43,17 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onAuthorizationClick(View view) {
-        String textLogin = editTextLogin.getText().toString();// В переменные записывваем значения из TextEdit
+        String textLogin = editTextLogin.getText().toString();
         String textPassword = editText1Password.getText().toString();//
         String textPasswordMD5 = MD5Util.md5Custom(textPassword);
 
-        DBHelper dbHelper = new DBHelper(this);// копируем экземпляр для чтения и редактирования
-        db = dbHelper.getWritableDatabase();//
+        DBHelper dbHelper = new DBHelper(this);
+        db = dbHelper.getWritableDatabase();
 
 
         Cursor cursor = db.query(DBHelper.TABLE_AUTHORIZATION, null, null, null, null, null, null);
-        if (cursor.moveToFirst()) { // длает первую запись курсор активной и проверяет, если ли вообще записи
-
+        if (cursor.moveToFirst()) {
             DAOAuthorization authorization = new DAOAuthorization(db);
             ArrayList<Authorization> list = authorization.selectAll();
 

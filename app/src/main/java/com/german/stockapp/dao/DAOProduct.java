@@ -11,6 +11,8 @@ import com.german.stockapp.entity.WeightCategory;
 
 import java.util.ArrayList;
 
+// just checking git
+
 public class DAOProduct {
 
     SQLiteDatabase db;
@@ -23,7 +25,7 @@ public class DAOProduct {
     public void insert(Product obj) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("title", obj.getTitle());
-        contentValues.put("date_of_delivery", obj.getDate_of_delivery());// Гугли про дату и время SQLite
+        contentValues.put("date_of_delivery", obj.getDate_of_delivery());
         contentValues.put("operator_id", obj.getOperator_id());
         contentValues.put("amount", obj.getAmount());
         contentValues.put("implementation_period", obj.getImplementation_period());
